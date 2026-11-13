@@ -240,25 +240,22 @@ No public data establishes a lunar plant's mass per unit of throughput. Hence th
 
 ## 9. The landscape
 
-**Nobody has flown the assay. That is the whole game.**
+**Interlune mines. We are building the industrial base beneath the space economy.**
 
-Interlune, founded by Rob Meyerson after his time as president of Blue Origin, is the most serious announced player in this field. Its CTO Gary Lai was chief architect at Blue Origin; its strategic advisor is Harrison Schmitt, Apollo 17 astronaut and geologist. Its record is real: a full-scale Vermeer excavator ran in Iowa in 2025, pure helium-3 has been produced from domestic helium by cryogenic processing, and it claims nearly $500 million in binding helium-3 purchase agreements with Maybell Quantum, Bluefors and the U.S. Department of Energy — its own accounting, not audited — named for the quantum-cooling segment, not a mass market [25].
+Nobody on Earth has flown an in-situ helium assay. Every announced prospect is a forward forecast standing on sample interpolation until someone returns one. That gap is deliberately ours.
 
-One fact frames the whole field: no kilogram of off-world helium-3 has flown, no site on the Moon has returned an assay, and no announced commercial prospect is anything other than a forward instrument curve standing on sample interpolation. The buyers are betting. Interlune is building. The unknown itself is still unmeasured.
+Interlune, founded by ex-Blue Origin leadership, is the only serious announced competitor in the field. It has an excavator running in Iowa (Vermeer, 2025), pure helium-3 from domestic helium (July 2026), and nearly $500 million in binding helium-3 purchase agreements with Maybell Quantum, Bluefors and the U.S. Department of Energy — its own accounting, not audited [25]. That is real, and it is a mining company: one isotope, one harvest, one cash flow.
 
-This programme sits in that gap deliberately, and it is the entire reason the company exists in this shape.
+**Where the difference actually lies.** Helium-3 is not the company; it is the wedge. The company is the first industrial base in space — energy and resources made off-world at scale, the thing that turns the space economy from a venture experiment into infrastructure the world depends on. Interlune sells one substance with a price tag. We are building the machine that makes the space economy possible: power, heat, gas handling, metals, oxygen, structure. The base from which habitats, manufacturing, propulsion and a permanent presence become consequences, not miracles. Whoever builds the first working base owns the century. That is the position this programme exists to hold.
 
 **The edge, stated plainly.**
 
-- Nobody has flown an in-situ prospecting assay. Every announced prospect from here, Interlune included, prices against the number our Gate 0 is built to produce. The first flown assay becomes the ground truth; every miner, every contractor and every buyer prices from it afterwards.
-- Our engineering loop runs at AI speed, not team speed. The reading, the CAD reconciliation, the simulation, the review and the drafting close in days instead of months, and they are published and checkable in the public repository. That is not a slogan. It is why this paper exists and exists this early.
-- The failure ledger is published, not buried. An error found before a reader sees it is cheaper than a design frozen behind a rework crisis, and far cheaper than a mission lost.
-- We burn capital in gate-sized increments with stated kill criteria. Each dollar buys one question answered or one reason to stop. That is a structurally lower burn than a company building an excavator in Iowa and an assay in parallel.
-- While Interlune owns the purchase orders, we own the unknown they all depend on. Their business case inherits our measurement the day it flies.
+- Nobody has flown an in-situ prospecting assay. Ours is Gate 0. The first flown measurement is the number every buyer prices from afterwards.
+- Our engineering loop runs at AI speed. The reading, the reconciliation, the simulation, the review close in days, and every piece is published and checkable.
+- Nothing in this programme survives on hope. Our designs are closed against their own failure conditions before they are closed against any commitment.
+- Capital burns in gate-sized increments with stated kill criteria. Each dollar buys one question answered or one reason to stop.
 
-**The competitive read, without varnish.** Interlune has the team, the capital and the customers; it is a serious company doing hard things in public. This programme is doing a harder thing on a quieter shoestring: proving that a measured kilogram can be obtained at all. If you believe in the contracted buyers clearing before any mine is real, Interlune is the ticket. If you believe no one gets to the moon without the assay — every one of them, us included — then the team that flies it first owns the most valuable piece of information in lunar industry. That is us.
-
-**China is the other gravity well.** Beijing Research Institute of Uranium Geology led the 2023 noble-gas measurements in Chang'e-5 low-titanium basalts — trapped 3He/4He less fractionated than Apollo soils [27]. No He-3 concentration is published. A new commercial effort, Starpath, announced in February 2026 with a hyperspectral 3He-prospecting lander passed for feasibility review in September 2026 — surveying, not mining, and no flown hardware. Ouyang Ziyuan's "10,000 years of energy" line is rhetoric, not a plan; the ILRS programme lists no helium-3 goal [27]. The measurement question is now the contested ground, and whoever answers it first will own the argument that follows.
+**The direct read.** Interlune has the customers, the team, the capital. We are not the larger company, and we do not need to be. The assay decides everything downstream, and ours comes first. From the assay: the gate, the bench, and then the base.
 
 ---
 
@@ -363,7 +360,6 @@ It claims that the problem is real, that the arithmetic is checkable, that the f
 
 [25] Interlune Corporation. Sources: https://interlune.space/ (claims nearly $500M in binding helium-3 purchase agreements, Maybell Quantum and Bluefors, May 2025 DOE Isotope Program 3-litre purchase), https://interlune.space/about (Meyerson, Lai, Hornsby, Schmitt adviser), https://interlune.space/press-releases (NASA $6.9M lunar resources contract May 2026, Vermeer excavator partnership 2025–2026, pure helium-3 from domestic helium July 2026, U.S. Air Force SBIR Direct-to-Phase II November 2025, helium-implanted simulant testing August 2026). Interlune's purchase figures are self-reported, not audited.
 
-[27] Li, Y., et al. (2023). Noble-gas analyses of Chang'e-5 low-titanium basalts: high 4He/36Ar and 20Ne/36Ar, trapped helium less fractionated than Apollo soils. *Communications Earth & Environment* 4, 278. https://www.nature.com/articles/s43247-023-00937-9 — no published He-3 concentration from CE-5/CE-6 material exists as of November 2026. ILRS roadmap: https://www.cnsa.gov.cn/english/n6465652/n6760280/c6812168/content.html — no He-3 goal.
 
 [26] Industrializing the Moon (2017, video essay). Vision framing for section 1. Popular exposition, not an engineering source. No technical claim in this paper depends on it.
 
