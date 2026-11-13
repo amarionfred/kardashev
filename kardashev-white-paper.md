@@ -308,6 +308,24 @@ It claims that the problem is real, that the arithmetic is checkable, that the f
 
 ---
 
+## The co-founder
+
+Kardashev is pre-funding. There is no salary on offer and no fund behind the cheque book. What exists is the problem, the method, and a public, reviewable body of work: a traceable design basis, a failure record, and a white paper at kardashev.aft.page. That is the whole asset sheet.
+
+Two shapes of partner can make this real.
+
+**A technical co-founder.** Someone who can own one of the hard parts — ISRU process engineering (high-temperature gas-solid reactions, volatiles, cryogenics); spacecraft thermal and mechanical systems (heat rejection, mechanisms, structures, dust); robotics and autonomy (perception, manipulation, fault recovery); or bulk materials handling (excavation, comminution, wear) — and who would rather build the machine than explain it. They take equity, not a salary. Compensation is ownership of what the machine becomes.
+
+**A financial co-founder or angel.** Someone who reads the white paper and sees not a dream, but a sequence of cheap, falsifiable steps. They do not write a check against the Moon. They write one against the next gate — the prospecting payload, or the bench unit that settles release fraction on simulant — where the exposure is bounded, the kill criteria are explicit, and the downside is a measured no.
+
+What a partner gets, either way: a founder with demonstrable and checkable velocity (a public design basis, a live site, and the paper, executed while the usual paperwork is still being drafted), a method that keeps its own failures in the record, and a milestone sequence with stated stop conditions. What a partner does not get: fabricated traction, a salary, or optimism in place of arithmetic.
+
+The signal is not a follower count. The best people in this field have small audiences because they are in laboratories. What matters is a first-author measurement, a flown or tested article, an SBIR or CLPS payload, or an open-source tool with real users. A person who has measured helium release from a simulant is worth more than a person who has explained it to a hundred thousand people.
+
+The company is named after a scale, not a product. The first product is helium-3. The company is the machine that makes lunar industry possible, one measured step at a time. Your move.
+
+---
+
 ## References
 
 [1] Kardashev, N. S. (1964). Transmission of information by extraterrestrial civilizations. *Soviet Astronomy*, 8, 217.
