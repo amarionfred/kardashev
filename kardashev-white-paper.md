@@ -255,7 +255,7 @@ Interlune, founded by ex-Blue Origin leadership, is the only serious announced c
 - Nothing in this programme survives on hope. Our designs are closed against their own failure conditions before they are closed against any commitment.
 - Capital burns in gate-sized increments with stated kill criteria. Each dollar buys one question answered or one reason to stop.
 
-**The direct read.** Interlune has the customers, the team, the capital. We are not the larger company, and we do not need to be. The assay decides everything downstream, and ours comes first. From the assay: the gate, the bench, and then the base.
+**The direct read.** The assay decides everything downstream, and ours comes first. From the assay: the gate, the bench, and then the base. We do not need to be the larger company to be the one whose measurement reprices the field.
 
 ---
 
