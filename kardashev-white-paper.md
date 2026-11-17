@@ -28,6 +28,15 @@ The numbers depend on the convention [1][2]. Kardashev's original Type I thresho
 
 Five hundred is a large number, but it is not the interesting one. The interesting one is that energy is not the only input. A civilisation that wants five hundred times the power must build five hundred times the machines, and those machines must come from somewhere. Earth's biosphere, its ore bodies, and its launch capacity are finite. At some point the mass fraction that must be lifted out of Earth's gravity well becomes the binding constraint, not the fuel.
 
+The trajectory is not ours to invent either. Arthur C. Clarke drew the engineering shape in 1950. Robert Heinlein wrote the social consequences in 1966. In 1974, Princeton physicist Gerard K. O'Neill framed the lunar surface as the quarry, not the destination: colonies and power stations built from what the Moon already holds, launched electromechanically, because lifting structure from Earth was always going to bind. In 1977, he built a demonstration — Mass Driver 1, a two-metre launcher assembled from copper plumbing, car batteries and scrap, accelerating a bucket at 30 g's. In 1980, MIT's Henry Kolm projected that a several-kilometre lunar launcher could throw 600,000 tonnes a year [30]. None of it was built at scale, because no one had a reason to fund it.
+
+In the recent past, the broader industry has set sail in the same direction: SpaceX announced its acquisition of xAI in February 2026, described a future in which AI is cheaper in space than on Earth, and presented a robot-factory-supported lunar launch scenario at the Abundance Summit the following month [28][29]. These are announcements, not commitments; nothing of that scale has flown.
+
+Those are the relevant facts. The relevant conclusions hold independently of the dates: the lunar industrial arc is no longer an academic argument. The question has narrowed from whether to when, and the grade of answer on offer — anyone's formula — is: not without a measured site first. Kardashev writes down what is measured and refuses the rest until it is. The 1970s American railgun fired at seven times the speed of sound and wore its barrels out in a quarter; the 1980s lab reached 1,800 g's and never flew an escaping payload. Kolm's 1980 projection of 600,000 tonnes per year was real physics, and it stayed on the page because no one at the time had a funded reason to build the thing to throw.
+
+The vision embedded in this paper is therefore not a prediction of who wins the next decade; it is the insistence on the method that makes the decade matter. An in-situ assay payload priced to fly a decade before any robot factory is contracted; an F1-grade honesty system for a documented failure chain; and, in the long tail, a first industrial kilogram from the Moon, measured, sold, labelled. That is the only route from O'Neill's quarry to a working industrial base; everything else is paperwork and promises.
+
+
 The Moon is the first place where that constraint can be tested. It is close enough for a return trip measured in days. It has no atmosphere, so a launch from its surface does not pay the same penalty as a launch from Earth. It has no global magnetic field, so the solar wind has reached its surface for most of its history. And it has no biosphere to protect, which means industrial experiments there are not automatically environmental questions.
 
 The destination, stated plainly, is an industrial arc that moves the Moon from a visited outpost to a worked site. The reasoning, set out in the 2017 video essay Industrializing the Moon, runs as follows. The Moon's composition is close to Earth's crust: silicon, oxygen, aluminium, iron and, in its mare basalts, titanium, plus water ice in shadowed polar craters. Shipping mass from the lunar surface to Earth orbit costs less than lifting the same mass from Earth's surface. The Moon is already, in that account's phrase, a warehouse pre-positioned next to the expansion front: raw mass and fuel for expanded space operations. Once ore handling and fuel production exist, the same feedstock and the same base can tow O'Neill-class rotating habitats into orbit instead of down into Earth's gravity well. The same account's construction ballpark is about a million person-years per habitat, with centuries to run in, starting from modest thousand-person installations [26].
@@ -380,6 +389,14 @@ The company is named after a scale, not a product. The first product is helium-3
 
 
 [26] Industrializing the Moon (2017, video essay). Vision framing for section 1. Popular exposition, not an engineering source. No technical claim in this paper depends on it.
+
+[28] SpaceX / SpaceX-xAI statements about mass drivers on the Moon, February 2026 (xAI acquisition memo, 2 Feb 2026) through October 2026 (petawatt-per-year capability claim, published 31 Oct 2026); dates are announcements, not commitments. Sourced via Space.com, TechCrunch and Teslanorth coverage (Oct 2026).
+
+[29] SMR SI. “Elon Wants a Railgun on the Moon” (title as published). YouTube, 16 November 2026, 21 min 42 sec. Claim-by-claim sourcing at rentry.co/smrsi-massdriver-sources, accessed 17 Nov 2026. The dates in that piece are announcements, not commitments; nothing described in that source has flown.
+
+[30] Kolm, H. L5 News, September 1980. Reported projection: a several-kilometre lunar launcher delivering ~600,000 tonnes/year. cited via the Mass Driver Bibliography maintained by the SMR SI channel (rentry.co/smrsi-massdriver-sources).
+
+[31] O'Neill, G. K. "The Colonization of Space" (1974, Physics Today, Princeton). Cited via the same rentry bibliography.
 
 ---
 
