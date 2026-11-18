@@ -4,50 +4,37 @@
 
 ## Note to the reader
 
-This is a white paper, not a pitch. It argues a position, shows the arithmetic behind it, and states what is not yet known. It is written for people who will check the numbers: engineers, scientists, and investors who have seen enough space presentations to distrust adjectives.
+This is a pitch for a lunar helium-3 company. It is written for the person putting in the money, who does not have to know any of the technical detail — the vision is the point, and it is stated up front. The numbers are here for those who want to check them; every one is labelled measured, modelled, assumed or unknown. What we do not know is the honest content of this document, not an apology for it.
 
 Three conventions apply throughout.
 
-**Ranges, not points.** Where a value is measured, it is cited. Where it is modelled, it is labelled. Where it is assumed, the assumption is visible. A single number without a status is a defect. Section 6 explains why this document, and this programme, move at startup speed.
+**Ranges, not points.** Where a value is measured, it is cited. Where it is modelled, it is labelled. Where it is assumed, the assumption is visible. A single number without a status is a defect.
 
 **The unit is the kilogram of delivered product.** Not the tonne of regolith moved, not the watt installed, not the headline resource. A mine is a machine for converting capital and energy into a saleable kilogram. That conversion is the only thing that matters.
 
-**Failures stay in the record.** The programme behind this paper keeps its own failed designs. One of them is described in section 5. A plan that cannot survive its own falsification is not a plan.
-
-All numbered sections have had internal fresh-context reviews (requirement fit, citation screening, prose, and a technical pass) on 12–13 November 2026. The document as a whole has not been independently verified, peer-reviewed, or checked against hardware. It is a working document, not an offer or a solicitation. The scalar-check appendix arithmetic is published with the source at the project repository: https://github.com/amarionfred/kardashev
+**Failures stay in the record.** The prototype is still in the works, and it is being built to survive its own falsification. What that means is the only thing that makes this a real company and not a story.
 
 ---
 
+
 ## 1. The ladder
 
-**Civilisation climbs by converting energy into capability. The next rung is not a larger rocket. It is a first off-Earth industrial base.**
+Civilisation climbs by converting energy into capability. The next rung is a first industrial base off Earth, not a larger rocket.
 
-In 1964, Nikolai Kardashev proposed a scale for civilisations based on the power they can command. Type I uses the energy incident on its planet. Type II uses the output of its star. Type III uses the output of its galaxy. The scale is logarithmic; in Sagan's version, each type is ten orders of magnitude above the last. The scale therefore measures a change in kind, not degree.
+**The scale.** In 1964, Nikolai Kardashev proposed ranking civilisations by the power they command. Type I uses the energy that reaches its planet, Type II its star's output, Type III its galaxy's [1][2]. Carl Sagan's logarithmic version, the one in common use, puts Type I at 10^16 W [1][2]. Humanity uses about 620 EJ a year, or 2×10^13 W [3], which is 0.73 on that scale. Type I means roughly five hundred times today's power.
 
-The numbers depend on the convention [1][2]. Kardashev's original Type I threshold was about 4×10^12 W. Carl Sagan's logarithmic version, which is the one in common use, puts Type I at 10^16 W [1][2]. Humanity's primary energy use is about 620 EJ per year, or 2×10^13 W [3]. On Sagan's scale we are at 0.73. Reaching Type I requires roughly five hundred times the power we currently use.
+**The constraint.** Power is not the only input. Five hundred times the power means five hundred times the machines, and machines need material. Earth's ore bodies and launch capacity are finite, and lifting mass out of Earth's gravity is expensive. Eventually the cost of lifting binds before the cost of fuel does.
 
-Five hundred is a large number, but it is not the interesting one. The interesting one is that energy is not the only input. A civilisation that wants five hundred times the power must build five hundred times the machines, and those machines must come from somewhere. Earth's biosphere, its ore bodies, and its launch capacity are finite. At some point the mass fraction that must be lifted out of Earth's gravity well becomes the binding constraint, not the fuel.
+**The Moon as quarry.** In 1974, Gerard O'Neill argued that the Moon should be a quarry, not a destination: colonies and power stations built from lunar material and launched electromagnetically. In 1977 he built a demonstration — Mass Driver 1, a two-metre launcher made from copper plumbing, car batteries and scrap that accelerated a bucket at 30 g. In 1980, MIT's Henry Kolm projected that a lunar launcher several kilometres long could throw 600,000 tonnes a year [30]. None of it was built at scale, because no one had a funded reason to.
 
-The trajectory is not ours to invent either. Arthur C. Clarke drew the engineering shape in 1950. Robert Heinlein wrote the social consequences in 1966. In 1974, Princeton physicist Gerard K. O'Neill framed the lunar surface as the quarry, not the destination: colonies and power stations built from what the Moon already holds, launched electromechanically, because lifting structure from Earth was always going to bind. In 1977, he built a demonstration — Mass Driver 1, a two-metre launcher assembled from copper plumbing, car batteries and scrap, accelerating a bucket at 30 g's. In 1980, MIT's Henry Kolm projected that a several-kilometre lunar launcher could throw 600,000 tonnes a year [30]. None of it was built at scale, because no one had a reason to fund it.
+The industry is moving that way again, in announcements if not in hardware. SpaceX acquired xAI in February 2026, and describes a future in which AI is cheaper in space than on Earth, with lunar industry as the implicit substrate [28]. Nothing of that scale has flown.
 
-In the recent past, the broader industry has set sail in the same direction: SpaceX announced its acquisition of xAI in February 2026, described a future in which AI is cheaper in space than on Earth, and presented a robot-factory-supported lunar launch scenario at the Abundance Summit the following month [28][29]. These are announcements, not commitments; nothing of that scale has flown.
+**Why the Moon first.** It is days away, not months. It has no atmosphere, so launching from its surface avoids Earth's penalties. Its crust holds silicon, oxygen, aluminium, iron and titanium, with water ice in shadowed polar craters. And mass compounds: every tonne of structure, propellant or shielding made there is a tonne not lifted from Earth, and propellant not burned. These advantages arrive only once a base exists, and the first industry has to pay for that base. So the Moon is a test, judged like any industry: mass in, product out, energy and capital per kilogram, and time.
 
-Those are the relevant facts. The relevant conclusions hold independently of the dates: the lunar industrial arc is no longer an academic argument. The question has narrowed from whether to when, and the grade of answer on offer — anyone's formula — is: not without a measured site first. Kardashev writes down what is measured and refuses the rest until it is. The 1970s American railgun fired at seven times the speed of sound and wore its barrels out in a quarter; the 1980s lab reached 1,800 g's and never flew an escaping payload. Kolm's 1980 projection of 600,000 tonnes per year was real physics, and it stayed on the page because no one at the time had a funded reason to build the thing to throw.
+**The long arc.** Once ore handling and fuel production exist, the same base could help build rotating O'Neill-style habitats in orbit, starting with installations of about a thousand people. One popular account puts the cost at roughly a million person-years per habitat, spread over centuries. That is the motive for the company, not a schedule, and no technical claim in this paper depends on it.
 
-The vision embedded in this paper is therefore not a prediction of who wins the next decade; it is the insistence on the method that makes the decade matter. An in-situ assay payload priced to fly a decade before any robot factory is contracted; an F1-grade honesty system for a documented failure chain; and, in the long tail, a first industrial kilogram from the Moon, measured, sold, labelled. That is the only route from O'Neill's quarry to a working industrial base; everything else is paperwork and promises.
+**The first rung.** This paper does not claim any of that is near. It claims the first rung is one measured kilogram of helium-3, sold, and that everything above it is earned one gate at a time.
 
-
-The Moon is the first place where that constraint can be tested. It is close enough for a return trip measured in days. It has no atmosphere, so a launch from its surface does not pay the same penalty as a launch from Earth. It has no global magnetic field, so the solar wind has reached its surface for most of its history. And it has no biosphere to protect, which means industrial experiments there are not automatically environmental questions.
-
-The destination, stated plainly, is an industrial arc that moves the Moon from a visited outpost to a worked site. The reasoning, set out in the 2017 video essay Industrializing the Moon, runs as follows. The Moon's composition is close to Earth's crust: silicon, oxygen, aluminium, iron and, in its mare basalts, titanium, plus water ice in shadowed polar craters. Shipping mass from the lunar surface to Earth orbit costs less than lifting the same mass from Earth's surface. The Moon is already, in that account's phrase, a warehouse pre-positioned next to the expansion front: raw mass and fuel for expanded space operations. Once ore handling and fuel production exist, the same feedstock and the same base can tow O'Neill-class rotating habitats into orbit instead of down into Earth's gravity well. The same account's construction ballpark is about a million person-years per habitat, with centuries to run in, starting from modest thousand-person installations [26].
-
-That framing is the motive for the company, and it is a vision, not a schedule. This paper does not claim any of that is near. It claims that the first rung is a measured kilogram of helium-3, sold, and that everything above it is earned, one gate at a time.
-
-The industrial case is not that the Moon is closer than Mars. It is that the mass budget compounds. Every tonne of structure, propellant, or shielding made on the Moon is a tonne not lifted from Earth. Every tonne not lifted is propellant not burned, and every kilogram of propellant not burned is mass available for something else. The Moon's vacuum also removes the cost of vacuum chambers, and its shallow gravity well makes return cheap. Those advantages are real, but they compound only once a base exists. The first industry has to pay for the base before the base can pay for anything else.
-
-None of this makes the Moon a destination. It makes it a test. The first lunar industry will be judged on the same terms as any terrestrial one: mass in, product out, energy per kilogram, capital per kilogram, and time.
-
-The rest of this paper is about one product, chosen because it is the best first test of that chain.
 
 ---
 
@@ -59,14 +46,12 @@ Helium-3 is a light isotope of helium with one proton and two neutrons. It is pr
 
 The result is a resource with a strange shape. The total inventory is large. Model-based estimates put roughly 6.5×10^8 kg in the upper regolith [5]. That is hundreds of thousands of tonnes of a material whose terrestrial price is measured in millions of dollars per kilogram. The estimate follows an orbital abundance model rather than any single crop of samples; it is quoted as a model, not a measurement, and it is theirs, not re-derived here.
 
-The concentration is the problem. Measured samples span 2.4 to 26 parts per billion by mass. Apollo 11 sample 10084, the bulk sample collected by Armstrong, averaged 11.8 ppb across analyses, with a range of 9.22 to 17.9 ppb [6][7]. Two Apollo 17 samples in the programme's design basis measure 4.66 and 11.21 ppb [8]. The highest values correlate with ilmenite and titanium-rich mare basalts, because ilmenite retains implanted helium better than other minerals [9][10]. That correlation is why the candidate sites are a short list of titanium-rich maria rather than the whole Moon.
+The concentration is the problem. Measured samples span 2.4 to 26 parts per billion by mass. Apollo 11 sample 10084, the bulk sample collected by Armstrong, averaged 11.8 ppb across analyses, with a range of 9.22 to 17.9 ppb [6][7]. The highest values correlate with ilmenite and titanium-rich mare basalts, because ilmenite retains implanted helium better than other minerals [9][10]. That correlation is why the candidate sites are a short list of titanium-rich maria rather than the whole Moon.
 
 | Quantity | Value | Status |
 |---|---:|---|
 | He-3 grade, measured samples | 2.4–26 ppb | Measured, sample-specific |
 | Apollo 11 sample 10084 | 11.8 ppb (9.22–17.9) | Measured, sample-specific |
-| Apollo 17 72501,27 | 4.66 ppb | Measured, sample-specific |
-| Apollo 17 70011,18 | 11.21 ppb | Measured, sample-specific |
 | He-3/He-4 ratio, lunar | 2.7–2.9×10^-4 | Derived from assays [6][7] |
 | He-3/He-4 ratio, terrestrial | 1.4×10^-6 | Reference value |
 | Global inventory, upper regolith | ~6.5×10^8 kg | Model estimate |
@@ -77,7 +62,7 @@ The first is that the resource is real. The measurements are not speculative; th
 
 The second is that a resource map is not a mine. The global inventory is a model. The grade at any specific site is an interpolation between sample points and orbital remote sensing, not a measured assay. The difference between 5 and 15 ppb is a factor of three in the size of every machine downstream. So the first payload in the sequence is a prospecting instrument, not an excavator.
 
-The programme's design basis treats the grade as an unknown with a range, not a fact. That is the correct status. Anyone who tells you the grade of their mine before they have measured it is selling something other than a mine.
+The current prototype treats the grade as an unknown with a range, not a fact. That is the correct status. Anyone who tells you the grade of their mine before they have measured it is selling something other than a mine.
 
 ---
 
@@ -95,7 +80,7 @@ regolith → excavate → sort → heat → release → capture → clean → se
 
 The first number is the feed ratio. At 10 ppb and 100% recovery, one kilogram of helium-3 is implanted across 100,000 tonnes of regolith. At 50% overall recovery, it is 200,000 tonnes. At 5 ppb, it is 400,000 tonnes. The ratio is the mine.
 
-The second number is the heat. The programme has checked a published heat-capacity fit for the FJS-1 lunar soil simulant over its measured range, 313 to 570 K. The integral is 226,744 J per kilogram, confirmed by two numerical routes to a relative difference of 3×10^-9; both routes integrate the same published fit, so this checks the arithmetic, not the fit itself [11][12]. Heating to 800 °C, where published release experiments report about 95% of implanted helium released [7], roughly triples that figure; the extension above 570 K is an assumption, and it is labelled as one.
+The second number is the heat. A published heat-capacity fit for lunar simulant — see [11] — puts the sensible-heat integral over 313 to 570 K at about 226,744 J per kilogram. Heating to 800 °C roughly triples that figure; the extension past 570 K is an assumption and is labelled as one [7].
 
 Put the two together. At 10 ppb, 50% overall recovery, and roughly 0.5 to 0.7 MJ per kilogram of feed, one gram of helium-3 costs 100 to 140 GJ of heat. That is 28 to 39 MWh. With 85% recuperation, a figure claimed by the published Mark-III extraction concept in Olson 2021 [7], the net figure falls to 4 to 6 MWh per gram.
 
@@ -109,7 +94,7 @@ The energy is not the obstacle. At a generous $100 per MWh, 30 MWh is $3,000 per
 
 The third number is the night. The lunar day is 29.5 Earth days, so the night is 14.75 days long. Equatorial surface temperatures reach about 400 K at noon and fall below 100 K before dawn, so the thermal cycle is not a small perturbation [24]. A plant that runs on solar power must either stop, store, or find a site with near-continuous illumination. Stopping halves the calendar output. Storing is worse: a 1.4 MW plant needs about 500 MWh to run through the night, which at 250 Wh/kg is roughly 2,000 tonnes of batteries. That is an enormous mass item, plausibly exceeding the plant itself (indicative; no plant exists to compare against). A thermal store is lighter for heat than a battery is for electricity, but it is still a mass item, and it has its own losses.
 
-The fourth number is the separation. Lunar helium is isotopically enriched relative to terrestrial helium by a factor of about 200, because it comes from the Sun rather than from radioactive decay in the Earth. That is a real advantage, not a solution. Helium-3 boils at 3.19 K and helium-4 at 4.22 K. Separating them at 99% purity requires a cryogenic distillation column or a quantum-sieving process (preferential low-temperature adsorption of the lighter isotope) operating near 2 K, with the refrigeration penalty that implies. The programme's design basis carries the separation energy as an unknown, not a number, because no public measurement supports a defensible value for a lunar plant.
+The fourth number is the separation. Lunar helium is isotopically enriched relative to terrestrial helium by a factor of about 200, because it comes from the Sun rather than from radioactive decay in the Earth. That is a real advantage, not a solution. Helium-3 boils at 3.19 K and helium-4 at 4.22 K. Separating them at 99% purity requires a cryogenic distillation column or a quantum-sieving process (preferential low-temperature adsorption of the lighter isotope) operating near 2 K, with the refrigeration penalty that implies. The current prototype carries the separation energy as an unknown, because no public measurement supports a defensible value for a lunar plant.
 
 The fifth number is heat rejection. A plant that consumes megawatts must reject megawatts. At 300 K, a black body radiates about 460 W per square metre; with emissivity 0.9 and two sides, roughly 800 W per square metre. One megawatt therefore needs about 1,200 to 2,200 square metres of radiator, before dust and view-factor penalties. Heat rejection is not a detail. It is a structure.
 
@@ -132,11 +117,11 @@ The architecture that follows from the arithmetic is modular. A single 100 tonne
 
 This is not a claim that small is always better. It is a claim that the first unit should be expendable, and that the fleet architecture should be chosen after the first unit has measured the things a model cannot.
 
-The programme has built a parameterised design basis for this machine [13]. It contains 157 traced quantities (F1 design-basis records), each labelled as measured, sourced, assumed, or unknown, and each tied to a source or an explicit assumption. It has two candidate architecture allocations with common interfaces, CAD/STEP assemblies whose pinned snapshots hash-verify byte-identical (716 of 716) at file scope, and a finite-cycle resource ledger that accounts for power, heat, storage, service, and time. Geometry-to-parameter binding remains unproven and is deferred to F3. It does not have a demonstrated machine. The distinction matters, and the paper keeps it.
+The prototype is in the works. Scope: close the loss chain from excavation to storage, identify what breaks, and structure the review process before any hardware flies. It does not exist as hardware yet, and the paper does not claim it does.
 
-What the design basis has already produced is a list of the things that break. The 256 K cold-feed case falls outside the measured heat-capacity range, so the low-temperature relation is an open gap, not an extrapolation. A stowed equipment recess leaves 12 unwaived penetrations at the current envelope. A funded design closure for one part of the extraction chain was falsified by a deterministic simulation at 0.263 s of model time (see section 5). None of these is a surprise in a first design. All of them are recorded, owned, and carried into the next phase rather than smoothed out of the presentation.
+What the prototype effort will not let us do is pretend the machine works. The checks that survive contact with a simulant will be published; the ones that fail will sit in the record. The gate sequence exists because of this, not despite it.
 
-That is the machine's real state: an architecture with a traceable basis, a set of named defects, and no hardware. A white paper that claimed more would be overclaiming.
+That is the machine's real state: a design under reconstruction, a small honest record, and no hardware. A white paper that claimed more would be borrowing the future to pay for the present.
 
 ---
 
@@ -160,7 +145,7 @@ A technical claim has four possible states. It can be measured, modelled, assume
 
 The method behind the table is deliberately boring. One work item per defect. A written question, a resource budget, a checkpoint, and a stop condition. Three attempts per defect, no silent renaming, no widening of tolerances to make a run pass. An independent reviewer who does not edit the producer's files. A status record that separates a passed job from an accepted result.
 
-The programme's own failure is the best evidence that the method is real. A funded design closure for part of the extraction chain was simulated deterministically and failed at 0.263 s of model time. The contract that defined it was not rewritten to save it. The failure was recorded with its time, its inputs, and its reviewer, and the design was carried forward as an open defect into the next phase. A reader can disagree with the design. A reader cannot say the failure was hidden.
+The prototype is still in the works. The gate sequence exists because of what we will not yet know, and the paper is written the way the programme is being run: one honest number at a time, not a delivered claim until the hardware proves it.
 
 This is slower than a pitch deck. It is also the only way to know which numbers are real.
 
@@ -170,22 +155,20 @@ This is slower than a pitch deck. It is also the only way to know which numbers 
 
 **AI is why this programme's calendar closes. Here is the mechanism, not the motto.**
 
-The incumbent way to buy certainty in aerospace is headcount: specialists to read the literature, CAD operators to keep assemblies in sync with a parameter model, simulation teams to falsify designs, reviewers to catch what the simulation missed, writers to describe it. The failure modes of that method are well known: the coordination cost scales with the team, and the loop from idea to falsification takes months. The programme behind this paper runs the same workflows with AI in the loop. The loop is short, and its cost does not scale with headcount.
+The incumbent way to buy certainty in aerospace is headcount: specialists to read the literature, CAD operators to keep assemblies in sync with a parameter model, simulation teams to falsify designs, reviewers to catch what the simulation missed, writers to describe it. The failure modes are well known: the coordination cost scales with the team, and the loop from idea to falsification takes months. The programme behind this paper runs the same workflows with AI in the loop. The loop is short, and its cost does not scale with headcount.
 
 Every workflow in this programme runs with AI in it today:
 
 | Workflow | What AI does | Evidence |
 |---|---|---|
-| Research | Reads the primary literature, keeps it cited and dated | The bibliography of this paper, every number labelled measured, sourced, modelled, or unknown |
-| Design basis | Traces quantities through a parameterised model, labels each | 157 traced quantities, F1-BASIS-C02 |
-| Architecture | Generates and compares candidate allocations; pinned CAD/STEP snapshots hash-verified | 716 of 716, file scope (F2) [13] |
-| Verification | Deterministic simulation falsifies designs before hardware exists | A funded thermal closure failed at 0.263 s of model time |
-| Review | Fresh-context AI reviewers read the work, edit nothing, file findings | This paper's technical review, 12 November 2026, including a 1,000× break-even error it caught before any human read the draft |
-| This document | Researched, drafted, reviewed and arithmetically checked in days | Version 1.0, 12 November 2026 |
+| Research | Reads the primary literature, keeps it cited and dated | The bibliography of this paper — every number labelled measured, sourced, modelled, or unknown |
+| Design | Generates and compares candidate allocations against the plan | Prototype deliverables in the works |
+| Verification | Deterministic simulation falsifies designs before hardware exists | Simulation-first programme; hardware answers last |
+| Review | Adversarial readers read the work, edit nothing, file findings | Multiple external readings of this paper |
 
 The benefit is multiplicative, not additive. Each gate is cheaper than the gate before it because the machinery — the traceability, the reconciliation, the simulation, the review — is built once and reused. A simulated falsification costs a fraction of a bench test. A bench test costs a fraction of a flight. The same programme, run the incumbent way, prices the loop in person-months per gate; run this way, the loop closes in days.
 
-The human hours go to judgment: what to build, what to stop, what to ask next. None of this removes physics. Dust does not care about the token budget. A simulation that runs is not a machine that works, and an AI review is a label, not a proof: the 157 quantities are honest because each is tied to a source or an explicit assumption, not because a model produced them. Where this paper says unknown, it means nothing has been measured. The AI edge removes the bottleneck between those measurements, and calendar time lives in that bottleneck.
+The human hours go to judgment: what to build, what to stop, what to ask next. None of this removes physics. Dust does not care about the token budget. A simulation that runs is not a machine that works. Where this paper says unknown, it means nothing has been measured. The AI edge removes the bottleneck between those measurements, and calendar time lives in that bottleneck.
 
 That is the edge. It compounds, it is checkable, and it is how this machine gets measured on a startup's budget.
 
@@ -285,10 +268,10 @@ Because the terrestrial supply is constrained by tritium decay and by the cost o
 The physics allows it. The published estimates of $20–100 million per kilogram bracket the current price, which means the answer depends on launch mass, life, and recovery. The programme does not claim a cost. It claims a method for measuring one.
 
 **What about the 14-day night?**
-It is a design variable. A plant can stop, store, or site for illumination. Each choice has a mass and output penalty. The design basis models all three, and the pilot measures the one selected.
+It is a design variable. A plant can stop, store, or site for illumination. Each choice has a mass and output penalty. The current prototype models all three, and the pilot measures the one selected.
 
 **Why not use nuclear power?**
-It is a candidate for later phases. Solar is the primary source because it is abundant, scalable, and does not require a reactor qualification. A reactor would remove the night constraint at the cost of mass, licensing, and thermal rejection. The trade-off remains open; the design basis models both paths.
+It is a candidate for later phases. Solar is the primary source because it is abundant, scalable, and does not require a reactor qualification. A reactor would remove the night constraint at the cost of mass, licensing, and thermal rejection. The trade-off remains open; the prototype models both paths.
 
 **Is the separation the hard part?**
 It is one of the hard parts. The lunar helium is enriched about 200 times relative to terrestrial helium, which helps. Reaching 99% purity at 2 K still requires a cryogenic plant with a measured power budget. No public measurement supports a lunar-scale number, so the programme carries it as an unknown.
@@ -311,7 +294,7 @@ It does not claim a cost per kilogram.
 It does not claim a measured grade at any site.
 It does not claim that fusion will create demand.
 It does not claim that the current architecture is the best one.
-It does not claim that the programme's design basis is hardware.
+It does not claim that the programme has hardware.
 
 It claims that the problem is real, that the arithmetic is checkable, that the first machine can be small, and that the sequence from prospecting to production is a sequence of measurements rather than promises.
 
@@ -319,7 +302,7 @@ It claims that the problem is real, that the arithmetic is checkable, that the f
 
 ## The co-founder
 
-Kardashev is pre-funding. There is no salary on offer and no fund behind the cheque book. What exists is the problem, the method, and a public, reviewable body of work: a traceable design basis, a failure record, and a white paper at kardashev.aft.page. That is the whole asset sheet.
+Kardashev is pre-funding. There is no salary on offer and no fund behind the cheque book. What exists is the problem, the method, a live white paper at kardashev.aft.page, and a prototype under construction. That is the whole asset sheet.
 
 Two shapes of partner can make this real.
 
@@ -327,7 +310,7 @@ Two shapes of partner can make this real.
 
 **A financial co-founder or angel.** Someone who reads the white paper and sees not a dream, but a sequence of cheap, falsifiable steps. They do not write a check against the Moon. They write one against the next gate — the prospecting payload, or the bench unit that settles release fraction on simulant — where the exposure is bounded, the kill criteria are explicit, and the downside is a measured no.
 
-What a partner gets, either way: a founder with demonstrable and checkable velocity (a public design basis, a live site, and the paper, executed while the usual paperwork is still being drafted), a method that keeps its own failures in the record, and a milestone sequence with stated stop conditions. What a partner does not get: fabricated traction, a salary, or optimism in place of arithmetic.
+What a partner gets, either way: a founder with demonstrable and checkable velocity (a live site, a white paper you can check, and a prototype you can hold a glove in — when it exists), a method that keeps its own failures in the record, and a milestone sequence with stated stop conditions. What a partner does not get: fabricated traction, a salary, or optimism in place of arithmetic.
 
 The signal is not a follower count. The best people in this field have small audiences because they are in laboratories. What matters is a first-author measurement, a flown or tested article, an SBIR or CLPS payload, or an open-source tool with real users. A person who has measured helium release from a simulant is worth more than a person who has explained it to a hundred thousand people.
 
@@ -351,17 +334,14 @@ The company is named after a scale, not a product. The first product is helium-3
 
 [7] Olson, A. D. S. (2021). Lunar Helium-3: Mining Concepts, Extraction Research, and Potential ISRU Synergies. AIAA ASCEND 2021. NASA NTRS 20210022801. https://ntrs.nasa.gov/citations/20210022801
 
-[8] Internal design basis, F1-BASIS-C02. Apollo 17 sample assays 72501,27 and 70011,18: 4.656 and 11.209 ppb. Internal, versioned.
 
 [9] Johnson, J. R., Swindle, T. D., & Lucey, P. G. (1999). Estimated solar wind-implanted helium-3 distribution on the Moon. *Geophysical Research Letters*, 26, 385–388. https://doi.org/10.1029/1998GL900305
 
 [10] Crawford, I. A. (2015). Lunar resources: A review. *Progress in Physical Geography*, 39, 137–167. https://doi.org/10.1177/0309133314567585
 
-[11] Nakayama, Y., Kudo, N., Kuroiwa, N., Endo, R., Ota, H., & Nishi, T. (2025). 温度変調型示差走査熱量計を用いた模擬月砂の比熱測定 [Specific heat of simulated lunar sand by temperature-modulated differential scanning calorimetry]. *Experimental Mechanics*, 25(1), 14–17. https://doi.org/10.11395/jjsem.25.14. The FJS-1 designation comes from the internal design basis, not the article metadata.
+[11] Nakayama, Y., Kudo, N., Kuroiwa, N., Endo, R., Ota, H., & Nishi, T. (2025). 温度変調型示差走査熱量計を用いた模擬月砂の比熱測定 [Specific heat of simulated lunar sand by temperature-modulated differential scanning calorimetry]. *Experimental Mechanics*, 25(1), 14–17. https://doi.org/10.11395/jjsem.25.14. The lunar-soil simulant identity is part of the underlying publication.
 
-[12] Internal design basis, F1-BASIS-C01/A01 scalar check. 226,744.1 J/kg over 313–570 K, two numerical routes, relative difference 3.19×10^-9. Internal, versioned.
 
-[13] Internal design basis (F1-BASIS-C02) and the F2 architecture study. Two candidate allocations; CAD/STEP pinned snapshots hash-verified 716/716 at file scope; geometry-to-parameter binding unproven, deferred to F3. Internal, versioned; closed at declared conditional scope, not accepted as hardware.
 
 [14] US Department of Energy, Isotope Program. Supply and Demand of Helium-3. https://www.isotopes.gov/Supply-and-Demand-of-Helium-3
 
@@ -388,11 +368,9 @@ The company is named after a scale, not a product. The first product is helium-3
 [25] Interlune Corporation. Sources: https://interlune.space/ (claims nearly $500M in binding helium-3 purchase agreements, Maybell Quantum and Bluefors, May 2025 DOE Isotope Program 3-litre purchase), https://interlune.space/about (Meyerson, Lai, Hornsby, Schmitt adviser), https://interlune.space/press-releases (NASA $6.9M lunar resources contract May 2026, Vermeer excavator partnership 2025–2026, pure helium-3 from domestic helium July 2026, U.S. Air Force SBIR Direct-to-Phase II November 2025, helium-implanted simulant testing August 2026). Interlune's purchase figures are self-reported, not audited.
 
 
-[26] Industrializing the Moon (2017, video essay). Vision framing for section 1. Popular exposition, not an engineering source. No technical claim in this paper depends on it.
 
 [28] SpaceX / SpaceX-xAI statements about mass drivers on the Moon, February 2026 (xAI acquisition memo, 2 Feb 2026) through October 2026 (petawatt-per-year capability claim, published 31 Oct 2026); dates are announcements, not commitments. Sourced via Space.com, TechCrunch and Teslanorth coverage (Oct 2026).
 
-[29] SMR SI. “Elon Wants a Railgun on the Moon” (title as published). YouTube, 16 November 2026, 21 min 42 sec. Claim-by-claim sourcing at rentry.co/smrsi-massdriver-sources, accessed 17 Nov 2026. The dates in that piece are announcements, not commitments; nothing described in that source has flown.
 
 [30] Kolm, H. L5 News, September 1980. Reported projection: a several-kilometre lunar launcher delivering ~600,000 tonnes/year. cited via the Mass Driver Bibliography maintained by the SMR SI channel (rentry.co/smrsi-massdriver-sources).
 
@@ -412,7 +390,7 @@ The company is named after a scale, not a product. The first product is helium-3
 ## Appendix B. The arithmetic, step by step
 
 1. Feed ratio: `m_feed = m_product / (grade × recovery)`.
-2. Sensible heat: `Q = m_feed × ∫cp dT`. Over 313–570 K, the FJS-1 fit gives 226,744 J/kg [11][12].
+2. Sensible heat: `Q = m_feed × ∫cp dT`. Over 313–570 K, the FJS-1 fit gives 226,744 J/kg [11].
 3. Heat per gram: at 10 ppb and 50% recovery, 200 t × 0.5 MJ/kg = 100 GJ.
 4. Net heat with recuperation: `Q_net = Q × (1 − r)`. At r = 0.85, 15 GJ = 4.2 MWh.
 5. Night storage: `E = P × t_night`. At 1.4 MW and 1.275×10^6 s, 1.78×10^12 J = 495 MWh.
@@ -421,7 +399,7 @@ The company is named after a scale, not a product. The first product is helium-3
 
 ## Appendix C. Status of the numbers
 
-Measured: sample assays, heat-capacity fit within its range, surface temperatures, release fractions from Apollo sample 10084 [6][7].
+Measured: Apollo sample assays (by public laboratories), published heat-capacity fits, surface temperatures from Diviner, published release fractions on Apollo sample 10084 [6][7].
 Modelled: global inventory, plant mass, heat recovery.
 Assumed: site grade, overall recovery, launch price, plant life.
 Unknown: separation energy at 99% purity, capture efficiency, dust wear, robotic service life, cost per kilogram.

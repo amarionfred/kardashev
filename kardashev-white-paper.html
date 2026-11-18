@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="canonical" href="https://kardashev.aft.page/">
+<title>KARDASHEV</title>
+<meta name="description" content="White paper.">
+<meta property="og:title" content="KARDASHEV">
+<meta property="og:description" content="White paper.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='45' font-family='Georgia' font-size='36' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --ink:#1F2122;
+  --ink-soft:#5c6164;
+  --title-ink:#ffffff;
+  --title-soft:rgba(255,255,255,.6);
+  --title-rule:rgba(255,255,255,.22);
+  --rule:rgba(31,33,34,.28);
+  --wash:rgba(31,33,34,.06);
+  --sans:"Nunito","Helvetica Neue",Arial,sans-serif;
+  --display:"Nunito","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--paper); scrollbar-gutter:stable; scroll-padding-top:72px; -webkit-text-size-adjust:100%;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:400; font-size:16.5px; line-height:1.72;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:99; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px; mix-blend-mode:multiply;
+}
+p{margin:0 0 1.05em; text-align:left;}
+a{color:inherit; text-decoration:none;}
+:focus-visible{outline:2px solid var(--ink); outline-offset:3px; border-radius:2px;}
+
+/* ---------- left rail ---------- */
+#rail{
+  position:fixed; left:max(18px, env(safe-area-inset-left)); top:50%; transform:translateY(-50%);
+  z-index:8; opacity:0; pointer-events:none; transition:opacity .2s ease; max-height:86vh; overflow:auto;
+  scrollbar-width:none;
+}
+#rail::-webkit-scrollbar{display:none}
+#rail.show{opacity:1; pointer-events:auto;}
+#rail ol{list-style:none; margin:0; padding:0 0 0 14px; border-left:1px solid var(--rule);}
+#rail li{margin:0; padding:0;}
+#rail a{
+  display:block; font-size:11px; line-height:1.3; letter-spacing:.04em; color:var(--ink-soft);
+  padding:4.5px 0; border-left:1.5px solid transparent; margin-left:-15px; padding-left:13px;
+  transition:color .15s ease, border-color .15s ease; white-space:nowrap;
+}
+#rail a.here{color:var(--ink); border-color:var(--ink); font-weight:600;}
+#rail a:hover{color:var(--ink);}
+@media (max-width:1180px){#rail{display:none;}}
+
+/* ---------- top bar (small screens) ---------- */
+#topbar{
+  position:fixed; top:0; left:0; right:0; z-index:9; background:var(--paper);
+  border-bottom:1px solid var(--rule); opacity:0; pointer-events:none; transition:opacity .2s ease;
+  padding-left:max(18px, env(safe-area-inset-left)); padding-right:max(18px, env(safe-area-inset-right));
+}
+#topbar.show{opacity:1; pointer-events:auto;}
+#topbar .inner{max-width:44em; margin:0 auto; display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:8px 0;}
+#topbar .where{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;}
+#topbar button{background:none; border:0; font:inherit; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink); cursor:pointer; padding:6px 0;}
+#contents{
+  display:none; position:fixed; z-index:10; top:41px; left:0; right:0; background:var(--paper);
+  border-bottom:1px solid var(--rule); max-height:70vh; overflow:auto; padding:10px max(18px, env(safe-area-inset-left)) 16px;
+}
+#contents.open{display:block;}
+#contents ol{columns:2; column-gap:2em; list-style:none; margin:0; padding:0;}
+#contents a{display:block; padding:7px 0; font-size:13px; color:var(--ink-soft); border-bottom:1px solid rgba(31,33,34,.08);}
+#contents a:hover{color:var(--ink);}
+@media (min-width:1181px){#topbar, #contents{display:none !important;}}
+
+/* ---------- measure ---------- */
+.book{max-width:44em; margin:0 auto; padding-left:max(24px, env(safe-area-inset-left)); padding-right:max(24px, env(safe-area-inset-right));}
+@media (min-width:1181px){.book{padding-left:24px; padding-right:24px;}}
+
+/* ---------- title page ---------- */
+.titlepage{
+  position:relative; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+  background:#000; color:var(--title-ink); min-height:100vh; min-height:100svh;
+  display:flex; flex-direction:column; justify-content:space-between; align-items:center;
+  text-align:center; padding:9vh 24px 5vh; overflow:hidden;
+}
+.thesis{margin-top:1.35em; max-width:34em; font-size:1.05rem; line-height:1.6; color:var(--title-soft); font-weight:300; letter-spacing:.01em; text-align:center; text-wrap:balance;}
+.titlepage h1{
+  font-family:var(--display); font-weight:200; font-variation-settings:"wght" 200, "wdth" 100; font-synthesis:none;
+  font-size:clamp(3.2rem, 11vw, 5.4rem); line-height:1.02; letter-spacing:.09em; margin:.18em 0 0; color:var(--title-ink);
+}
+.hero{display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; min-height:0;}
+.readline{margin-top:0;}
+.readline a{
+  text-transform:uppercase; letter-spacing:.26em; font-size:11px; color:var(--title-soft);
+  border-bottom:1px solid var(--title-rule); padding-bottom:4px; transition:color .2s ease, border-color .2s ease;
+}
+.readline a:hover{color:var(--title-ink); border-color:var(--title-ink);}
+
+/* ---------- parts ---------- */
+.part{margin-top:6.5em;}
+.part:first-of-type{margin-top:4.5em;}
+.part header{text-align:center; margin:0 0 2.4em;}
+.kicker{display:block; text-transform:uppercase; letter-spacing:.3em; font-size:10.5px; font-weight:600; color:var(--ink-soft); margin:0 0 1.2em;}
+.part h2{
+  font-family:var(--display); font-weight:200; font-variation-settings:"wght" 200; font-synthesis:none; font-size:1.42rem; letter-spacing:.22em; text-transform:uppercase;
+  line-height:1.35; margin:0; text-wrap:balance;
+}
+.part h2{border-top:1px solid var(--rule); padding-top:1.1em;}
+.part h3{font-size:1.02rem; font-weight:700; letter-spacing:.01em; margin:2em 0 .6em;}
+.prose p:first-of-type.callline, p.callline{
+  font-weight:700; font-size:1.02rem; line-height:1.5; letter-spacing:.005em; margin-bottom:1.2em;
+}
+.prose ul, .prose ol{margin:0 0 1.1em 1.35em; padding:0;}
+.prose li{margin:.3em 0;}
+strong{font-weight:700;}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.86em; background:var(--wash); padding:.15em .35em; border-radius:3px;}
+pre{background:var(--wash); padding:1em 1.2em; border-radius:6px; overflow:auto; font-size:.8rem; line-height:1.5;}
+pre code{background:none; padding:0;}
+.asterism{text-align:center; letter-spacing:1.2em; padding-left:1.2em; margin:2.4em 0; color:var(--ink-soft);}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto; margin:1.6em 0 2em;}
+table.worked{width:100%; border-collapse:collapse; font-size:.88rem; line-height:1.5; font-variant-numeric:tabular-nums;}
+table.worked th{
+  font-weight:600; font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-soft);
+  text-align:left; padding:.6em .3em .55em; border-bottom:1px solid var(--rule);
+}
+table.worked td{padding:.62em .3em; border-bottom:1px solid rgba(31,33,34,.12); vertical-align:baseline;}
+table.worked tr:last-child td{border-bottom:1px solid var(--rule);}
+table.worked td:last-child{text-align:right;}
+table.worked td:first-child{padding-right:1.2em;}
+
+/* ---------- references / endnotes ---------- */
+#references p{font-size:.86rem; color:var(--ink-soft); line-height:1.65; padding-left:2.2em; text-indent:-2.2em; margin:0 0 .75em;}
+
+/* ---------- endmark ---------- */
+.endmark{margin:5em 0 4.5em; border-top:1px solid var(--rule); padding-top:2em; color:var(--ink-soft); line-height:2;}
+.endmark .sc{text-transform:uppercase; letter-spacing:.2em; font-size:.78rem; color:var(--ink);}
+.endmark a{border-bottom:1px solid var(--rule); padding-bottom:2px; text-transform:uppercase; letter-spacing:.2em; font-size:.72rem;}
+
+/* ---------- print ---------- */
+@page { size:A4; margin:17mm 16mm 18mm; }
+@media print{
+  #rail, #topbar, #contents{ display:none !important; }
+  body{font-size:10pt; line-height:1.5;}
+  .book{max-width:none; padding:0;}
+  .titlepage{min-height:210mm; background:#000 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; width:auto; margin:0;}
+  .part{margin-top:2.2em; break-inside:auto;}
+  .part header, table, pre, figure{break-inside:avoid;}
+  .part h2{font-size:1.05rem;}
+  a{color:inherit;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto !important;}}
+</style>
+</head>
+<body id="top">
+
+<nav id="rail" aria-label="Contents">
+  <ol>
+<li><a href="#preamble" data-target="preamble">Note to the reader</a></li>
+<li><a href="#s-1" data-target="s-1">The ladder</a></li>
+<li><a href="#s-2" data-target="s-2">The reserve</a></li>
+<li><a href="#s-3" data-target="s-3">The arithmetic</a></li>
+<li><a href="#s-4" data-target="s-4">The machine</a></li>
+<li><a href="#s-5" data-target="s-5">The ledger</a></li>
+<li><a href="#s-6" data-target="s-6">The edge</a></li>
+<li><a href="#s-7" data-target="s-7">The buyer</a></li>
+<li><a href="#s-8" data-target="s-8">The sequence</a></li>
+<li><a href="#s-9" data-target="s-9">The landscape</a></li>
+<li><a href="#s-10" data-target="s-10">The questions</a></li>
+<li><a href="#s-11" data-target="s-11">What this paper does not claim</a></li>
+<li><a href="#afterword" data-target="afterword">The co-founder</a></li>
+<li><a href="#references" data-target="references">References</a></li>
+<li><a href="#app-a" data-target="app-a">Units and conversions</a></li>
+<li><a href="#app-b" data-target="app-b">The arithmetic, step by step</a></li>
+<li><a href="#app-c" data-target="app-c">Status of the numbers</a></li>
+  </ol>
+</nav>
+
+<header id="topbar" aria-hidden="true"><div class="inner"><span class="where" id="where">KARDASHEV</span><button id="contents-toggle" aria-expanded="false" aria-controls="contents">Contents</button></div></header>
+<div id="contents" role="dialog" aria-label="Contents"><ol>
+<li><a href="#preamble" data-target="preamble">Note to the reader</a></li>
+<li><a href="#s-1" data-target="s-1">The ladder</a></li>
+<li><a href="#s-2" data-target="s-2">The reserve</a></li>
+<li><a href="#s-3" data-target="s-3">The arithmetic</a></li>
+<li><a href="#s-4" data-target="s-4">The machine</a></li>
+<li><a href="#s-5" data-target="s-5">The ledger</a></li>
+<li><a href="#s-6" data-target="s-6">The edge</a></li>
+<li><a href="#s-7" data-target="s-7">The buyer</a></li>
+<li><a href="#s-8" data-target="s-8">The sequence</a></li>
+<li><a href="#s-9" data-target="s-9">The landscape</a></li>
+<li><a href="#s-10" data-target="s-10">The questions</a></li>
+<li><a href="#s-11" data-target="s-11">What this paper does not claim</a></li>
+<li><a href="#afterword" data-target="afterword">The co-founder</a></li>
+<li><a href="#references" data-target="references">References</a></li>
+<li><a href="#app-a" data-target="app-a">Units and conversions</a></li>
+<li><a href="#app-b" data-target="app-b">The arithmetic, step by step</a></li>
+<li><a href="#app-c" data-target="app-c">Status of the numbers</a></li>
+</ol></div>
+
+<section class="titlepage">
+  <div class="hero">
+    <h1>KARDASHEV</h1>
+    <p class="thesis">Gradatim ad Stellas</p>
+  </div>
+  <div>
+    <p class="readline"><a href="#preamble">Read the white paper</a></p>
+  </div>
+</section>
+
+<main class="book">
+
+<section class="part" id="preamble"><header><p class="kicker">Preamble</p><h2>Note to the reader</h2></header><p>This is a pitch for a lunar helium-3 company. It is written for the person putting in the money, who does not have to know any of the technical detail — the vision is the point, and it is stated up front. The numbers are here for those who want to check them; every one is labelled measured, modelled, assumed or unknown. What we do not know is the honest content of this document, not an apology for it.</p>
+<p>Three conventions apply throughout.</p>
+<p><strong>Ranges, not points.</strong> Where a value is measured, it is cited. Where it is modelled, it is labelled. Where it is assumed, the assumption is visible. A single number without a status is a defect.</p>
+<p><strong>The unit is the kilogram of delivered product.</strong> Not the tonne of regolith moved, not the watt installed, not the headline resource. A mine is a machine for converting capital and energy into a saleable kilogram. That conversion is the only thing that matters.</p>
+<p><strong>Failures stay in the record.</strong> The prototype is still in the works, and it is being built to survive its own falsification. What that means is the only thing that makes this a real company and not a story.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-1"><header><p class="kicker">Section 1 of 11</p><h2>The ladder</h2></header><p>Civilisation climbs by converting energy into capability. The next rung is a first industrial base off Earth, not a larger rocket.</p>
+<p><strong>The scale.</strong> In 1964, Nikolai Kardashev proposed ranking civilisations by the power they command. Type I uses the energy that reaches its planet, Type II its star's output, Type III its galaxy's [1][2]. Carl Sagan's logarithmic version, the one in common use, puts Type I at 10<sup>16</sup> W [1][2]. Humanity uses about 620 EJ a year, or 2×10<sup>13</sup> W [3], which is 0.73 on that scale. Type I means roughly five hundred times today's power.</p>
+<p><strong>The constraint.</strong> Power is not the only input. Five hundred times the power means five hundred times the machines, and machines need material. Earth's ore bodies and launch capacity are finite, and lifting mass out of Earth's gravity is expensive. Eventually the cost of lifting binds before the cost of fuel does.</p>
+<p><strong>The Moon as quarry.</strong> In 1974, Gerard O'Neill argued that the Moon should be a quarry, not a destination: colonies and power stations built from lunar material and launched electromagnetically. In 1977 he built a demonstration — Mass Driver 1, a two-metre launcher made from copper plumbing, car batteries and scrap that accelerated a bucket at 30 g. In 1980, MIT's Henry Kolm projected that a lunar launcher several kilometres long could throw 600,000 tonnes a year [30]. None of it was built at scale, because no one had a funded reason to.</p>
+<p>The industry is moving that way again, in announcements if not in hardware. SpaceX acquired xAI in February 2026, and describes a future in which AI is cheaper in space than on Earth, with lunar industry as the implicit substrate [28]. Nothing of that scale has flown.</p>
+<p><strong>Why the Moon first.</strong> It is days away, not months. It has no atmosphere, so launching from its surface avoids Earth's penalties. Its crust holds silicon, oxygen, aluminium, iron and titanium, with water ice in shadowed polar craters. And mass compounds: every tonne of structure, propellant or shielding made there is a tonne not lifted from Earth, and propellant not burned. These advantages arrive only once a base exists, and the first industry has to pay for that base. So the Moon is a test, judged like any industry: mass in, product out, energy and capital per kilogram, and time.</p>
+<p><strong>The long arc.</strong> Once ore handling and fuel production exist, the same base could help build rotating O'Neill-style habitats in orbit, starting with installations of about a thousand people. One popular account puts the cost at roughly a million person-years per habitat, spread over centuries. That is the motive for the company, not a schedule, and no technical claim in this paper depends on it.</p>
+<p><strong>The first rung.</strong> This paper does not claim any of that is near. It claims the first rung is one measured kilogram of helium-3, sold, and that everything above it is earned one gate at a time.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-2"><header><p class="kicker">Section 2 of 11</p><h2>The reserve</h2></header><p class="callline">The Moon is not short of helium-3. It is short of concentration.</p>
+<p>Helium-3 is a light isotope of helium with one proton and two neutrons. It is primordial, produced in the first minutes after the Big Bang and in stellar interiors. Earth has very little of it: the atmosphere's helium is about one part per million helium-3, and the isotope is lost to space over geological time. The Moon has no global magnetic field and almost no atmosphere, so the solar wind, which carries helium-3 at a few hundred parts per million of its helium, has struck its surface directly for most of its history. The ions implant into the top tens of nanometres of regolith grains, and they stay there.</p>
+<p>The result is a resource with a strange shape. The total inventory is large. Model-based estimates put roughly 6.5×10<sup>8</sup> kg in the upper regolith [5]. That is hundreds of thousands of tonnes of a material whose terrestrial price is measured in millions of dollars per kilogram. The estimate follows an orbital abundance model rather than any single crop of samples; it is quoted as a model, not a measurement, and it is theirs, not re-derived here.</p>
+<p>The concentration is the problem. Measured samples span 2.4 to 26 parts per billion by mass. Apollo 11 sample 10084, the bulk sample collected by Armstrong, averaged 11.8 ppb across analyses, with a range of 9.22 to 17.9 ppb [6][7]. The highest values correlate with ilmenite and titanium-rich mare basalts, because ilmenite retains implanted helium better than other minerals [9][10]. That correlation is why the candidate sites are a short list of titanium-rich maria rather than the whole Moon.</p>
+<div class="tablewrap"><table class="worked">
+<thead>
+<tr>
+  <th>Quantity</th>
+  <th style="text-align:right">Value</th>
+  <th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>He-3 grade, measured samples</td>
+  <td style="text-align:right">2.4–26 ppb</td>
+  <td>Measured, sample-specific</td>
+</tr>
+<tr>
+  <td>Apollo 11 sample 10084</td>
+  <td style="text-align:right">11.8 ppb (9.22–17.9)</td>
+  <td>Measured, sample-specific</td>
+</tr>
+<tr>
+  <td>He-3/He-4 ratio, lunar</td>
+  <td style="text-align:right">2.7–2.9×10<sup>-4</sup></td>
+  <td>Derived from assays [6][7]</td>
+</tr>
+<tr>
+  <td>He-3/He-4 ratio, terrestrial</td>
+  <td style="text-align:right">1.4×10<sup>-6</sup></td>
+  <td>Reference value</td>
+</tr>
+<tr>
+  <td>Global inventory, upper regolith</td>
+  <td style="text-align:right">~6.5×10<sup>8</sup> kg</td>
+  <td>Model estimate</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two conclusions follow, and they pull in opposite directions.</p>
+<p>The first is that the resource is real. The measurements are not speculative; they come from returned samples, and the mechanism is understood. A mine would not be chasing a phantom.</p>
+<p>The second is that a resource map is not a mine. The global inventory is a model. The grade at any specific site is an interpolation between sample points and orbital remote sensing, not a measured assay. The difference between 5 and 15 ppb is a factor of three in the size of every machine downstream. So the first payload in the sequence is a prospecting instrument, not an excavator.</p>
+<p>The current prototype treats the grade as an unknown with a range, not a fact. That is the correct status. Anyone who tells you the grade of their mine before they have measured it is selling something other than a mine.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-3"><header><p class="kicker">Section 3 of 11</p><h2>The arithmetic</h2></header><p class="callline">Heat is cheap on the Moon. Mass is not. The machine is a heat exchanger with a mining problem attached.</p>
+<p>The extraction chain is simple to state and hard to execute. Regolith is excavated, sorted, heated, and the evolved gas is captured, cleaned, and separated into helium-3 and helium-4. Each step has a loss. The product is the product of all of them.</p>
+<pre><code>regolith → excavate → sort → heat → release → capture → clean → separate → store → deliver
+             ↑          ↑       ↑        ↑         ↑        ↑         ↑
+           losses     losses  losses   losses    losses   losses    losses
+</code></pre>
+<p>The first number is the feed ratio. At 10 ppb and 100% recovery, one kilogram of helium-3 is implanted across 100,000 tonnes of regolith. At 50% overall recovery, it is 200,000 tonnes. At 5 ppb, it is 400,000 tonnes. The ratio is the mine.</p>
+<p>The second number is the heat. A published heat-capacity fit for lunar simulant — see [11] — puts the sensible-heat integral over 313 to 570 K at about 226,744 J per kilogram. Heating to 800 °C roughly triples that figure; the extension past 570 K is an assumption and is labelled as one [7].</p>
+<p>Put the two together. At 10 ppb, 50% overall recovery, and roughly 0.5 to 0.7 MJ per kilogram of feed, one gram of helium-3 costs 100 to 140 GJ of heat. That is 28 to 39 MWh. With 85% recuperation, a figure claimed by the published Mark-III extraction concept in Olson 2021 [7], the net figure falls to 4 to 6 MWh per gram.</p>
+<div class="tablewrap"><table class="worked">
+<thead>
+<tr>
+  <th>Case</th>
+  <th style="text-align:right">Feed per gram</th>
+  <th style="text-align:right">Heat per gram</th>
+  <th style="text-align:right">Net heat at 85% recuperation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>10 ppb, 50% recovery</td>
+  <td style="text-align:right">200 t</td>
+  <td style="text-align:right">100–140 GJ</td>
+  <td style="text-align:right">4–6 MWh</td>
+</tr>
+<tr>
+  <td>10 ppb, 30% recovery</td>
+  <td style="text-align:right">333 t</td>
+  <td style="text-align:right">165–235 GJ</td>
+  <td style="text-align:right">7–10 MWh</td>
+</tr>
+<tr>
+  <td>5 ppb, 50% recovery</td>
+  <td style="text-align:right">400 t</td>
+  <td style="text-align:right">200–280 GJ</td>
+  <td style="text-align:right">8–12 MWh</td>
+</tr>
+</tbody>
+</table></div>
+<p>The energy is not the obstacle. At a generous $100 per MWh, 30 MWh is $3,000 per gram, or 15% of a $20,000 per gram sale price. With recuperation it is about 2%. The thermodynamics are affordable. The capital is not yet.</p>
+<p>The third number is the night. The lunar day is 29.5 Earth days, so the night is 14.75 days long. Equatorial surface temperatures reach about 400 K at noon and fall below 100 K before dawn, so the thermal cycle is not a small perturbation [24]. A plant that runs on solar power must either stop, store, or find a site with near-continuous illumination. Stopping halves the calendar output. Storing is worse: a 1.4 MW plant needs about 500 MWh to run through the night, which at 250 Wh/kg is roughly 2,000 tonnes of batteries. That is an enormous mass item, plausibly exceeding the plant itself (indicative; no plant exists to compare against). A thermal store is lighter for heat than a battery is for electricity, but it is still a mass item, and it has its own losses.</p>
+<p>The fourth number is the separation. Lunar helium is isotopically enriched relative to terrestrial helium by a factor of about 200, because it comes from the Sun rather than from radioactive decay in the Earth. That is a real advantage, not a solution. Helium-3 boils at 3.19 K and helium-4 at 4.22 K. Separating them at 99% purity requires a cryogenic distillation column or a quantum-sieving process (preferential low-temperature adsorption of the lighter isotope) operating near 2 K, with the refrigeration penalty that implies. The current prototype carries the separation energy as an unknown, because no public measurement supports a defensible value for a lunar plant.</p>
+<p>The fifth number is heat rejection. A plant that consumes megawatts must reject megawatts. At 300 K, a black body radiates about 460 W per square metre; with emissivity 0.9 and two sides, roughly 800 W per square metre. One megawatt therefore needs about 1,200 to 2,200 square metres of radiator, before dust and view-factor penalties. Heat rejection is not a detail. It is a structure.</p>
+<p>The arithmetic does not say the mine is impossible. It says where the difficulty lives: in the mass of the machine, the length of the night, and the fraction of the gas that survives the chain. Those are engineering problems, and they are the ones the programme is built to solve.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-4"><header><p class="kicker">Section 4 of 11</p><h2>The machine</h2></header><p class="callline">A mine that can survive the night is a different machine from a mine that works for fourteen days.</p>
+<p>The programme has carried four extraction routes as explicit alternatives, not as a favourite and three straw men.</p>
+<ol>
+<li><strong>Thermal reference.</strong> Heat selected feed and capture the evolved gas, with heat recovery from the processed solids to the incoming feed. This is the most transparent published architecture, and the baseline against which the others are judged.</li>
+<li><strong>Warm preheat.</strong> Recover heat from the gas and the solids at a lower temperature, reducing the radiative loss that dominates at high temperature. The trade is residence time and release fraction.</li>
+<li><strong>Mechanical release.</strong> Agitate or mill the regolith to release gas without heating the bulk. Published simulant experiments removed 70% and 96% of implanted helium-4 at two small flow rates without heating above room temperature [7]. The experiment used helium-4 in a simulant, not helium-3 in lunar regolith, and it measured retained gas, not captured product. It is a lead, not a result.</li>
+<li><strong>Hybrid.</strong> Capture the early mechanical release, then heat the residual feed. This is a candidate, not a claimed improvement. It adds equipment mass and failure points, and the programme treats those as costs to be weighed, not details to be waved away.</li>
+</ol>
+<p>The architecture that follows from the arithmetic is modular. A single 100 tonne per hour plant produces about 0.5 grams per hour at 10 ppb and 50% recovery, or 4.4 kilograms per year if it runs continuously. A 10 tonne per hour unit produces a tenth of that. The smaller unit is easier to launch, easier to test, easier to replace, and easier to sell into a market measured in kilograms. A fleet of small units also fails gracefully: one jammed excavator does not stop the mine.</p>
+<p>This is not a claim that small is always better. It is a claim that the first unit should be expendable, and that the fleet architecture should be chosen after the first unit has measured the things a model cannot.</p>
+<p>The prototype is in the works. Scope: close the loss chain from excavation to storage, identify what breaks, and structure the review process before any hardware flies. It does not exist as hardware yet, and the paper does not claim it does.</p>
+<p>What the prototype effort will not let us do is pretend the machine works. The checks that survive contact with a simulant will be published; the ones that fail will sit in the record. The gate sequence exists because of this, not despite it.</p>
+<p>That is the machine's real state: a design under reconstruction, a small honest record, and no hardware. A white paper that claimed more would be borrowing the future to pay for the present.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-5"><header><p class="kicker">Section 5 of 11</p><h2>The ledger</h2></header><p class="callline">The programme keeps the failures. The failures are the reason to trust the process.</p>
+<p>A technical claim has four possible states. It can be measured, modelled, assumed, or unknown. Space-resource presentations often collapse the last three into the first. This paper does not.</p>
+<div class="tablewrap"><table class="worked">
+<thead>
+<tr>
+  <th>Claim</th>
+  <th>Status</th>
+  <th>What would settle it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>He-3 grade at a candidate site</td>
+  <td>Unknown; sample range 2.4–26 ppb</td>
+  <td>A prospecting payload with a calibrated gas assay</td>
+</tr>
+<tr>
+  <td>Release fraction at 500–800 °C</td>
+  <td>Measured on Apollo sample 10084; not reproduced</td>
+  <td>Bench test on lunar-derived or well-characterised simulant</td>
+</tr>
+<tr>
+  <td>Capture efficiency</td>
+  <td>Unknown</td>
+  <td>Bench test with a sealed gas train and mass balance</td>
+</tr>
+<tr>
+  <td>Heat recovery</td>
+  <td>Modelled at 85% in a published concept</td>
+  <td>Measured recuperation on a sub-scale exchanger</td>
+</tr>
+<tr>
+  <td>Separation energy at 99% purity</td>
+  <td>Unknown</td>
+  <td>Cryogenic column test with measured power</td>
+</tr>
+<tr>
+  <td>Night survival</td>
+  <td>Modelled</td>
+  <td>Thermal-vacuum test of the storage and radiator</td>
+</tr>
+<tr>
+  <td>Dust wear on seals and bearings</td>
+  <td>Unknown</td>
+  <td>Long-duration simulant test</td>
+</tr>
+<tr>
+  <td>Robotic service</td>
+  <td>Requirement, not design</td>
+  <td>Executable service procedure with a robot</td>
+</tr>
+<tr>
+  <td>Cost per kilogram</td>
+  <td>Unknown; published estimates $20–100M/kg [4]</td>
+  <td>A costed pilot with real supplier quotes</td>
+</tr>
+</tbody>
+</table></div>
+<p>The method behind the table is deliberately boring. One work item per defect. A written question, a resource budget, a checkpoint, and a stop condition. Three attempts per defect, no silent renaming, no widening of tolerances to make a run pass. An independent reviewer who does not edit the producer's files. A status record that separates a passed job from an accepted result.</p>
+<p>The prototype is still in the works. The gate sequence exists because of what we will not yet know, and the paper is written the way the programme is being run: one honest number at a time, not a delivered claim until the hardware proves it.</p>
+<p>This is slower than a pitch deck. It is also the only way to know which numbers are real.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-6"><header><p class="kicker">Section 6 of 11</p><h2>The edge</h2></header><p class="callline">AI is why this programme's calendar closes. Here is the mechanism, not the motto.</p>
+<p>The incumbent way to buy certainty in aerospace is headcount: specialists to read the literature, CAD operators to keep assemblies in sync with a parameter model, simulation teams to falsify designs, reviewers to catch what the simulation missed, writers to describe it. The failure modes are well known: the coordination cost scales with the team, and the loop from idea to falsification takes months. The programme behind this paper runs the same workflows with AI in the loop. The loop is short, and its cost does not scale with headcount.</p>
+<p>Every workflow in this programme runs with AI in it today:</p>
+<div class="tablewrap"><table class="worked">
+<thead>
+<tr>
+  <th>Workflow</th>
+  <th>What AI does</th>
+  <th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Research</td>
+  <td>Reads the primary literature, keeps it cited and dated</td>
+  <td>The bibliography of this paper — every number labelled measured, sourced, modelled, or unknown</td>
+</tr>
+<tr>
+  <td>Design</td>
+  <td>Generates and compares candidate allocations against the plan</td>
+  <td>Prototype deliverables in the works</td>
+</tr>
+<tr>
+  <td>Verification</td>
+  <td>Deterministic simulation falsifies designs before hardware exists</td>
+  <td>Simulation-first programme; hardware answers last</td>
+</tr>
+<tr>
+  <td>Review</td>
+  <td>Adversarial readers read the work, edit nothing, file findings</td>
+  <td>Multiple external readings of this paper</td>
+</tr>
+</tbody>
+</table></div>
+<p>The benefit is multiplicative, not additive. Each gate is cheaper than the gate before it because the machinery — the traceability, the reconciliation, the simulation, the review — is built once and reused. A simulated falsification costs a fraction of a bench test. A bench test costs a fraction of a flight. The same programme, run the incumbent way, prices the loop in person-months per gate; run this way, the loop closes in days.</p>
+<p>The human hours go to judgment: what to build, what to stop, what to ask next. None of this removes physics. Dust does not care about the token budget. A simulation that runs is not a machine that works. Where this paper says unknown, it means nothing has been measured. The AI edge removes the bottleneck between those measurements, and calendar time lives in that bottleneck.</p>
+<p>That is the edge. It compounds, it is checkable, and it is how this machine gets measured on a startup's budget.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-7"><header><p class="kicker">Section 7 of 11</p><h2>The buyer</h2></header><p class="callline">The price of helium-3 is high because the supply is small, not because the demand is large.</p>
+<p>This is the most important economic fact in the paper, and it cuts against the usual lunar mining story.</p>
+<p>Global production of helium-3 is under four kilograms a year [4]. The United States produces about one kilogram a year [14], almost all of it as a by-product of tritium decay at the Savannah River Site. United States federal demand, after a decade of substitution and recycling, is below 6,000 litres a year, about 0.8 kilograms [14][15]. The price is quoted around $20 million per kilogram, with small-lot quotes ranging from $15,000 to $19,000 per gram [4][16].</p>
+<p>A plant producing forty kilograms a year would not find forty times the customers. It would find a lower price. The demand curve, not the geology, sets the ceiling on the first mine. That is why the sequence in section 8 starts with a prospecting payload and a bench unit, not a hundred-tonne excavator.</p>
+<p>The demand has three parts, and they are not equally durable.</p>
+<p><strong>Quantum cooling.</strong> Dilution refrigerators use a helium-3/helium-4 mixture to reach millikelvin temperatures. Superconducting qubits need that cooling. Quantum computing is the fastest-growing source of demand, and it is where the first large commercial contracts for lunar helium-3 have appeared [4]. It is also the segment most exposed to substitution: researchers are actively engineering around helium-3 because the supply is scarce and the price is high.</p>
+<p><strong>Neutron detection.</strong> Helium-3 was the standard fill gas for neutron detectors used in port and border security. Demand spiked after 2001, drained the United States stockpile, and forced rationing [15]. The shortage accelerated alternatives: lithium-6 and boron-10 detectors now meet the same requirement without helium-3 [17]. This segment is unlikely to grow.</p>
+<p><strong>Fusion.</strong> The deuterium-helium-3 reaction is aneutronic in its main branch, which means less wall damage and the possibility of direct energy conversion. It also ignites at roughly 700 million degrees Celsius, about four times the deuterium-tritium temperature, and no machine is close to it [18]. Only a few fusion developers plan to buy helium-3 on the open market; most plan to breed their own or use deuterium-tritium. Fusion is an option on the future, not a customer today.</p>
+<p>The honest summary is that helium-3 is a niche isotope market with a strategic option on fusion. The niche is real: the price is real, the contracts are real, and the supply is genuinely constrained. The option is real too, but it is an option, and a company that needs fusion demand to survive will not survive long enough to see it.</p>
+<p>What follows is the case for sizing the first plant to the niche, and building the industrial base that makes the next product possible. The same feed handling, power, and thermal infrastructure that heats regolith for helium-3 can support oxygen, metals, and sintered structural material. Those products have larger markets and lower prices. They are the base. Helium-3 is the margin that pays for the first unit.</p>
+<p>The comparison is worth stating plainly. At 10 ppb and 50% recovery, a tonne of regolith yields 5 milligrams of helium-3, worth about $100 at $20 million per kilogram. A tonne of regolith at 10% aluminium and 50% recovery, an optimistic assumption used for illustration, yields 50 kilograms of aluminium, worth about $198 at $3.97 per kilogram [19]. By gross revenue per tonne of feed, aluminium wins. By revenue per kilogram of product, helium-3 wins by a factor of five million. The first metric governs the size of the machine. The second governs the size of the market. The arithmetic is in Appendix B. A mine has to satisfy both, and the programme's model is built to find out whether any configuration does.</p>
+<p>That is the question the first plant is designed to answer. A white paper cannot answer it.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-8"><header><p class="kicker">Section 8 of 11</p><h2>The sequence</h2></header><p class="callline">The first machine should be small enough to fail.</p>
+<p>The programme is organised as a sequence of gates. Each gate has a question, a measurement, and a kill criterion. A gate that cannot be failed is not a gate.</p>
+<p><strong>Gate 0: Prospect.</strong> A small payload measures helium-3 and helium-4 at a candidate site, with a calibrated gas assay and a known sampling depth. The question is whether the grade is above 5 ppb, and whether it is spatially uniform enough to mine. The kill criterion is a measured grade below 5 ppb at the best accessible site, which would make the current architecture uneconomic and force a re-selection of product or site. A prospecting payload is of the order of tens of kilograms, not tonnes (an estimate; no payload design exists yet). It is the cheapest way to retire the largest unknown.</p>
+<p><strong>Gate 1: Bench.</strong> A laboratory unit processes simulant and, where available, lunar-derived feed. It measures release fraction versus temperature and time, capture efficiency, heat recovery, and the mass balance of the gas train. The question is whether 50% of the implanted helium can be recovered at 500 °C with at least 80% recuperation (the published Mark-III concept claims 85%). The kill criterion is a measured release below 30% at 800 °C, which would break the thermal route and move the programme to mechanical or hybrid extraction.</p>
+<p><strong>Gate 2: Pilot.</strong> A sub-scale unit, on the Moon, operates for one lunar day. It measures gas, power, dust, and thermal performance in the real environment. The question is whether the machine survives the night and whether the measured output matches the model within a factor of two. The kill criterion is a measured output below one-fifth of the model, which would mean the loss chain is not understood.</p>
+<p><strong>Gate 3: Production.</strong> A small fleet produces a few kilograms a year and sells them into the niche market. The question is whether the unit economics close at the contract price. The kill criterion is a cost per kilogram above the contract price after two years of operation.</p>
+<p><strong>Gate 4: Base.</strong> The same fleet produces bulk products for lunar use: oxygen, metals, and structural material. The question is whether the marginal cost of those products is below the cost of delivering them from Earth. This is where the industrial arc starts paying for itself: the industrial base becomes the business, and helium-3 becomes the margin rather than the product.</p>
+<p>The sequence is deliberately front-loaded with measurement, and it is achievable on a startup calendar precisely because the loop in section 6 makes each gate cheap to close. A simple cost model says the first plant is dominated by launch mass: at $1 million per kilogram delivered to the lunar surface and $20 million per kilogram of product, every tonne of hardware must produce fifty kilograms over its life to break even. At $100,000 per kilogram, the requirement falls to five kilograms per tonne. That single ratio is a concrete design driver, because it tells the engineer what to minimise.</p>
+<div class="tablewrap"><table class="worked">
+<thead>
+<tr>
+  <th style="text-align:right">Launch price</th>
+  <th style="text-align:right">Product needed per tonne of hardware, over life</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">$1,000,000/kg</td>
+  <td style="text-align:right">50 kg</td>
+</tr>
+<tr>
+  <td style="text-align:right">$500,000/kg</td>
+  <td style="text-align:right">25 kg</td>
+</tr>
+<tr>
+  <td style="text-align:right">$100,000/kg</td>
+  <td style="text-align:right">5 kg</td>
+</tr>
+</tbody>
+</table></div>
+<p>No public data establishes a lunar plant's mass per unit of throughput. Hence the sequence starts with a pilot. The pilot measures the mass. The mass sets the launch requirement. The launch requirement sets the capital. The capital sets the price. The price meets the demand ceiling. The chain is closed, and every link is a number.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-9"><header><p class="kicker">Section 9 of 11</p><h2>The landscape</h2></header><p class="callline">Interlune mines. We are building the industrial base beneath the space economy.</p>
+<p>Nobody on Earth has flown an in-situ helium assay. Every announced prospect is a forward forecast standing on sample interpolation until someone returns one. That gap is deliberately ours.</p>
+<p>Interlune, founded by ex-Blue Origin leadership, is the only serious announced competitor in the field. It has an excavator running in Iowa (Vermeer, 2025), pure helium-3 from domestic helium (July 2026), and nearly $500 million in binding helium-3 purchase agreements with Maybell Quantum, Bluefors and the U.S. Department of Energy — its own accounting, not audited [25]. That is real, and it is a mining company: one isotope, one harvest, one cash flow.</p>
+<p><strong>Where the difference actually lies.</strong> Helium-3 is not the company; it is the wedge. The company is the first industrial base in space — energy and resources made off-world at scale, the thing that turns the space economy from a venture experiment into infrastructure the world depends on. Interlune sells one substance with a price tag. We are building the machine that makes the space economy possible: power, heat, gas handling, metals, oxygen, structure. The base from which habitats, manufacturing, propulsion and a permanent presence become consequences, not miracles. Whoever builds the first working base owns the century. That is the position this programme exists to hold.</p>
+<p><strong>The edge, stated plainly.</strong></p>
+<ul>
+<li>Nobody has flown an in-situ prospecting assay. Ours is Gate 0. The first flown measurement is the number every buyer prices from afterwards.</li>
+<li>Our engineering loop runs at AI speed. The reading, the reconciliation, the simulation, the review close in days, and every piece is published and checkable.</li>
+<li>Nothing in this programme survives on hope. Our designs are closed against their own failure conditions before they are closed against any commitment.</li>
+<li>Capital burns in gate-sized increments with stated kill criteria. Each dollar buys one question answered or one reason to stop.</li>
+</ul>
+<p><strong>The direct read.</strong> The assay decides everything downstream, and ours comes first. From the assay: the gate, the bench, and then the base. We do not need to be the larger company to be the one whose measurement reprices the field.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-10"><header><p class="kicker">Section 10 of 11</p><h2>The questions</h2></header><p class="callline">Ten questions a technical reader should ask, with the answers this paper can defend.</p>
+<p><strong>Why helium-3 rather than water or metals?</strong>
+Because it is the only lunar material whose price per delivered kilogram is high enough for a small plant to be revenue-relevant. Water and metals have larger markets and lower prices; they become attractive when the industrial base exists to make them cheaply. Helium-3 is the bootstrap, not the destination.</p>
+<p><strong>Isn't the market too small?</strong>
+Yes, for a large plant. The market is about one to four kilograms a year [4][14][15] at current demand and supply. Hence the first plant is small, and the business case rests on the niche plus the industrial base, not on fusion demand.</p>
+<p><strong>Why would anyone buy lunar helium-3 when terrestrial supply exists?</strong>
+Because the terrestrial supply is constrained by tritium decay and by the cost of separation from natural gas. A second source with a different cost structure is strategically valuable, and the first commercial contracts show buyers will pay for it. Whether they will pay enough at scale is unproven.</p>
+<p><strong>Can the Moon supply it at a competitive cost?</strong>
+The physics allows it. The published estimates of $20–100 million per kilogram bracket the current price, which means the answer depends on launch mass, life, and recovery. The programme does not claim a cost. It claims a method for measuring one.</p>
+<p><strong>What about the 14-day night?</strong>
+It is a design variable. A plant can stop, store, or site for illumination. Each choice has a mass and output penalty. The current prototype models all three, and the pilot measures the one selected.</p>
+<p><strong>Why not use nuclear power?</strong>
+It is a candidate for later phases. Solar is the primary source because it is abundant, scalable, and does not require a reactor qualification. A reactor would remove the night constraint at the cost of mass, licensing, and thermal rejection. The trade-off remains open; the prototype models both paths.</p>
+<p><strong>Is the separation the hard part?</strong>
+It is one of the hard parts. The lunar helium is enriched about 200 times relative to terrestrial helium, which helps. Reaching 99% purity at 2 K still requires a cryogenic plant with a measured power budget. No public measurement supports a lunar-scale number, so the programme carries it as an unknown.</p>
+<p><strong>What is the legal status?</strong>
+The Outer Space Treaty prohibits national appropriation of the Moon but does not settle whether a private party may extract and sell a resource [20]. The Moon Agreement, which treats resources as common heritage, has 17 parties (Saudi Arabia withdrew, effective 2024) and binds none of the major spacefaring states [21]. The United States, Luxembourg, the UAE, and Japan have enacted domestic frameworks recognising extracted resources as property [22]. The Artemis Accords, signed by 78 states as of October 2026, state that resource extraction does not inherently constitute national appropriation [23]. The practical position is that extraction is probably lawful for an operator whose state recognises it, and that the first serious dispute will be political, not technical.</p>
+<p><strong>What happens if fusion never arrives?</strong>
+The niche market still exists, the industrial base still has value for lunar operations, and the option expires worthless. That is an acceptable outcome if the first plant is sized to the niche. It is not acceptable if the plan requires fusion demand to repay the capital.</p>
+<p><strong>What is the biggest risk?</strong>
+The biggest risk is not geology, and not thermodynamics. It is that the loss chain, the sequence of small efficiencies from excavation to storage, multiplies to a recovery so low that the machine cannot pay for its own mass. The bench and pilot gates exist for that reason.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="s-11"><header><p class="kicker">Section 11 of 11</p><h2>What this paper does not claim</h2></header><p>It does not claim that a lunar helium-3 mine exists.
+It does not claim a cost per kilogram.
+It does not claim a measured grade at any site.
+It does not claim that fusion will create demand.
+It does not claim that the current architecture is the best one.
+It does not claim that the programme has hardware.</p>
+<p>It claims that the problem is real, that the arithmetic is checkable, that the first machine can be small, and that the sequence from prospecting to production is a sequence of measurements rather than promises.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="afterword"><header><p class="kicker">Afterword</p><h2>The co-founder</h2></header><p>Kardashev is pre-funding. There is no salary on offer and no fund behind the cheque book. What exists is the problem, the method, a live white paper at kardashev.aft.page, and a prototype under construction. That is the whole asset sheet.</p>
+<p>Two shapes of partner can make this real.</p>
+<p><strong>A technical co-founder.</strong> Someone who can own one of the hard parts — ISRU process engineering (high-temperature gas-solid reactions, volatiles, cryogenics); spacecraft thermal and mechanical systems (heat rejection, mechanisms, structures, dust); robotics and autonomy (perception, manipulation, fault recovery); or bulk materials handling (excavation, comminution, wear) — and who would rather build the machine than explain it. They take equity, not a salary. Compensation is ownership of what the machine becomes.</p>
+<p><strong>A financial co-founder or angel.</strong> Someone who reads the white paper and sees not a dream, but a sequence of cheap, falsifiable steps. They do not write a check against the Moon. They write one against the next gate — the prospecting payload, or the bench unit that settles release fraction on simulant — where the exposure is bounded, the kill criteria are explicit, and the downside is a measured no.</p>
+<p>What a partner gets, either way: a founder with demonstrable and checkable velocity (a live site, a white paper you can check, and a prototype you can hold a glove in — when it exists), a method that keeps its own failures in the record, and a milestone sequence with stated stop conditions. What a partner does not get: fabricated traction, a salary, or optimism in place of arithmetic.</p>
+<p>The signal is not a follower count. The best people in this field have small audiences because they are in laboratories. What matters is a first-author measurement, a flown or tested article, an SBIR or CLPS payload, or an open-source tool with real users. A person who has measured helium release from a simulant is worth more than a person who has explained it to a hundred thousand people.</p>
+<p>The company is named after a scale, not a product. The first product is helium-3. The company is the machine that makes lunar industry possible, one measured step at a time. Your move.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="references"><header><p class="kicker">References</p><h2>References</h2></header><p>[1] Kardashev, N. S. (1964). Transmission of information by extraterrestrial civilizations. <em>Soviet Astronomy</em>, 8, 217.</p>
+<p>[2] Sagan, C. (1973). <em>The Cosmic Connection</em>. Anchor Press. Logarithmic scale: K = (log10 P − 6)/10.</p>
+<p>[3] Energy Institute (2024). <em>Statistical Review of World Energy 2024</em>. Primary energy consumption, 620 EJ in 2023, ~1.96×10<sup>13</sup> W.</p>
+<p>[4] Nasr, M. (2026). Who Owns the Moon? A Case Study on Helium-3. Belfer Center for Science and International Affairs, 26 October 2026. https://www.belfercenter.org/research-analysis/who-owns-moon-case-study-helium-3</p>
+<p>[5] Fa, W., &amp; Jin, Y.-Q. (2007). Quantitative estimation of helium-3 spatial distribution in the lunar regolith layer. <em>Icarus</em>, 190, 15–23. https://doi.org/10.1016/j.icarus.2007.03.014</p>
+<p>[6] Hintenberger, H., Weber, H., Voshage, H., Wänke, H., Begemann, F., &amp; Wlotzka, F. (1970). Concentrations and isotopic abundances of the rare gases, hydrogen and nitrogen in Apollo 11 lunar fines. <em>Proceedings of the Apollo 11 Lunar Science Conference</em>, 1.</p>
+<p>[7] Olson, A. D. S. (2021). Lunar Helium-3: Mining Concepts, Extraction Research, and Potential ISRU Synergies. AIAA ASCEND 2021. NASA NTRS 20210022801. https://ntrs.nasa.gov/citations/20210022801</p>
+<p>[9] Johnson, J. R., Swindle, T. D., &amp; Lucey, P. G. (1999). Estimated solar wind-implanted helium-3 distribution on the Moon. <em>Geophysical Research Letters</em>, 26, 385–388. https://doi.org/10.1029/1998GL900305</p>
+<p>[10] Crawford, I. A. (2015). Lunar resources: A review. <em>Progress in Physical Geography</em>, 39, 137–167. https://doi.org/10.1177/0309133314567585</p>
+<p>[11] Nakayama, Y., Kudo, N., Kuroiwa, N., Endo, R., Ota, H., &amp; Nishi, T. (2025). 温度変調型示差走査熱量計を用いた模擬月砂の比熱測定 [Specific heat of simulated lunar sand by temperature-modulated differential scanning calorimetry]. <em>Experimental Mechanics</em>, 25(1), 14–17. https://doi.org/10.11395/jjsem.25.14. The lunar-soil simulant identity is part of the underlying publication.</p>
+<p>[14] US Department of Energy, Isotope Program. Supply and Demand of Helium-3. https://www.isotopes.gov/Supply-and-Demand-of-Helium-3</p>
+<p>[15] US Government Accountability Office (2011). Managing Critical Isotopes: Weaknesses in DOE's Management of Helium-3 Delayed the Federal Response to a Critical Supply Shortage. GAO-11-472. https://www.gao.gov/products/gao-11-472</p>
+<p>[16] Pulsar Helium. Helium-3 price range, $15,000–$19,000 per gram. https://pulsarhelium.com/he-hub/about-he/</p>
+<p>[17] NIST (2018). Neutron detection method: long-sought workaround to helium shortage. https://www.nist.gov/news-events/news/2018/06/nist-neutron-detection-method-long-sought-workaround-helium-shortage</p>
+<p>[18] Temmerman, G. D. (2021). The helium bubble: prospects for ³He-fuelled nuclear fusion. <em>Joule</em>, 5, 1312–1315. https://doi.org/10.1016/j.joule.2021.05.003</p>
+<p>[19] USGS (2026). <em>Mineral Commodity Summaries 2026</em>: Aluminium and Titanium. https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-aluminum.pdf</p>
+<p>[20] United Nations (1967). Treaty on Principles Governing the Activities of States in the Exploration and Use of Outer Space, including the Moon and Other Celestial Bodies. https://www.unoosa.org/oosa/en/ourwork/spacelaw/treaties/outerspacetreaty.html</p>
+<p>[21] United Nations (1979). Agreement Governing the Activities of States on the Moon and Other Celestial Bodies. https://www.unoosa.org/oosa/en/ourwork/spacelaw/treaties/moon-agreement.html — 17 parties; Saudi Arabia withdrew, effective 5 January 2024 (18 was cited in earlier drafts; the withdrawal reduced the count).</p>
+<p>[22] US Commercial Space Launch Competitiveness Act, H.R. 2262 (2015); Luxembourg Law of 20 July 2017; UAE Federal Law No. 12 of 2019; Japan Act on the Promotion of Business Activities for Exploring and Developing Space Resources (2021).</p>
+<p>[23] NASA. The Artemis Accords; 78 signatories as of 28 October 2026 (Vietnam, the 78th, signed that date). https://www.nasa.gov/artemis-accords/. Moon Agreement comparison: [21].</p>
+<p>[24] Vasavada, A. R., et al. (2012). Lunar equatorial surface temperatures and regolith properties from the Diviner Lunar Radiometer Experiment. <em>Journal of Geophysical Research</em>, 117, E00H18. https://doi.org/10.1029/2011JE003987</p>
+<p>[25] Interlune Corporation. Sources: https://interlune.space/ (claims nearly $500M in binding helium-3 purchase agreements, Maybell Quantum and Bluefors, May 2025 DOE Isotope Program 3-litre purchase), https://interlune.space/about (Meyerson, Lai, Hornsby, Schmitt adviser), https://interlune.space/press-releases (NASA $6.9M lunar resources contract May 2026, Vermeer excavator partnership 2025–2026, pure helium-3 from domestic helium July 2026, U.S. Air Force SBIR Direct-to-Phase II November 2025, helium-implanted simulant testing August 2026). Interlune's purchase figures are self-reported, not audited.</p>
+<p>[28] SpaceX / SpaceX-xAI statements about mass drivers on the Moon, February 2026 (xAI acquisition memo, 2 Feb 2026) through October 2026 (petawatt-per-year capability claim, published 31 Oct 2026); dates are announcements, not commitments. Sourced via Space.com, TechCrunch and Teslanorth coverage (Oct 2026).</p>
+<p>[30] Kolm, H. L5 News, September 1980. Reported projection: a several-kilometre lunar launcher delivering ~600,000 tonnes/year. cited via the Mass Driver Bibliography maintained by the SMR SI channel (rentry.co/smrsi-massdriver-sources).</p>
+<p>[31] O'Neill, G. K. &quot;The Colonization of Space&quot; (1974, Physics Today, Princeton). Cited via the same rentry bibliography.</p>
+<div class="asterism">· · ·</div></section>
+<section class="part" id="app-a"><header><p class="kicker">Appendix A</p><h2>Units and conversions</h2></header><ul>
+<li>1 ppb by mass = 1×10<sup>-9</sup> kg/kg = 1 mg per tonne.</li>
+<li>1 tonne = 1,000 kg.</li>
+<li>1 g of helium-3 at 10 ppb and 100% recovery requires 100 t of regolith; at 50% recovery, 200 t.</li>
+<li>1 GJ = 277.8 kWh; 1 MWh = 3.6 GJ.</li>
+<li>1 kg of helium-3 at $20 million/kg = $20,000 per gram.</li>
+<li>1 litre of helium-3 gas at STP ≈ 0.135 g, so 7.4 litres ≈ 1 g.</li>
+</ul></section>
+<section class="part" id="app-b"><header><p class="kicker">Appendix B</p><h2>The arithmetic, step by step</h2></header><ol>
+<li>Feed ratio: <code>m_feed = m_product / (grade × recovery)</code>.</li>
+<li>Sensible heat: <code>Q = m_feed × ∫cp dT</code>. Over 313–570 K, the FJS-1 fit gives 226,744 J/kg [11].</li>
+<li>Heat per gram: at 10 ppb and 50% recovery, 200 t × 0.5 MJ/kg = 100 GJ.</li>
+<li>Net heat with recuperation: <code>Q_net = Q × (1 − r)</code>. At r = 0.85, 15 GJ = 4.2 MWh.</li>
+<li>Night storage: <code>E = P × t_night</code>. At 1.4 MW and 1.275×10<sup>6</sup> s, 1.78×10<sup>12</sup> J = 495 MWh.</li>
+<li>Break-even launch mass: <code>m_product / m_hardware = price_launch / price_product</code>. At $1M/kg and $20M/kg, the ratio is 0.05, i.e. 50 kg of product per tonne of hardware.</li>
+<li>Aluminium comparison (illustrative, optimistic): 1 tonne of feed at 10% aluminium, 50% recovery → 50 kg Al ≈ $198 at $3.97/kg [19]; the same tonne yields 5 mg He-3 ≈ $100. Gross revenue per tonne favours aluminium; revenue per kilogram of product favours helium-3 by a factor of about 5 million.</li>
+</ol></section>
+<section class="part" id="app-c"><header><p class="kicker">Appendix C</p><h2>Status of the numbers</h2></header><p>Measured: Apollo sample assays (by public laboratories), published heat-capacity fits, surface temperatures from Diviner, published release fractions on Apollo sample 10084 [6][7].
+Modelled: global inventory, plant mass, heat recovery.
+Assumed: site grade, overall recovery, launch price, plant life.
+Unknown: separation energy at 99% purity, capture efficiency, dust wear, robotic service life, cost per kilogram.</p>
+<p>The paper's argument does not depend on any single unknown being favourable. It depends on the sequence that retires them in order of cost.</p></section>
+
+<footer class="endmark">
+  <p class="sc">Kardashev</p>
+  <p><a href="#top">Back to the beginning</a></p>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var links = document.querySelectorAll('#rail a');
+  var targets = [];
+  links.forEach(function(a){
+    var el = document.getElementById(a.getAttribute('data-target'));
+    if (el) targets.push({a:a, el:el});
+  });
+  var rail = document.getElementById('rail');
+  var topbar = document.getElementById('topbar');
+  var where = document.getElementById('where');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        links.forEach(function(l){ l.classList.toggle('here', l.getAttribute('data-target') === e.target.id); });
+        var h = e.target.querySelector('h2');
+        if (h && where) where.textContent = h.textContent;
+      }
+    });
+  }, {rootMargin:'-38% 0px -55% 0px', threshold:0});
+  targets.forEach(function(t){ io.observe(t.el); });
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var show = y > window.innerHeight * 0.55;
+    rail.classList.toggle('show', show);
+    topbar.classList.toggle('show', show);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  var toggle = document.getElementById('contents-toggle');
+  var contents = document.getElementById('contents');
+  toggle.addEventListener('click', function(){
+    var open = contents.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  contents.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') { contents.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { contents.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  });
+})();
+</script>
+</body>
+</html>
