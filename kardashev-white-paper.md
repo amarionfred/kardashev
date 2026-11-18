@@ -4,7 +4,7 @@
 
 ## Note to the reader
 
-This is a pitch for a lunar helium-3 company. It is written for the person putting in the money, who does not have to know any of the technical detail — the vision is the point, and it is stated up front. The numbers are here for those who want to check them; every one is labelled measured, modelled, assumed or unknown. What we do not know is the honest content of this document, not an apology for it.
+Kardashev is building the first industrial base off Earth, starting on the Moon. Our first product is helium-3, a rare isotope that sells for about $20 million a kilogram, of which Earth makes less than four kilograms a year. This paper shows the arithmetic, labels every number as measured, modelled, assumed, or unknown, and lists what we don't yet know. Those gaps are what the first dollar of funding is meant to close: it buys a measurement, not a mine.
 
 Three conventions apply throughout.
 
@@ -372,7 +372,7 @@ The company is named after a scale, not a product. The first product is helium-3
 [28] SpaceX / SpaceX-xAI statements about mass drivers on the Moon, February 2026 (xAI acquisition memo, 2 Feb 2026) through October 2026 (petawatt-per-year capability claim, published 31 Oct 2026); dates are announcements, not commitments. Sourced via Space.com, TechCrunch and Teslanorth coverage (Oct 2026).
 
 
-[30] Kolm, H. L5 News, September 1980. Reported projection: a several-kilometre lunar launcher delivering ~600,000 tonnes/year. cited via the Mass Driver Bibliography maintained by the SMR SI channel (rentry.co/smrsi-massdriver-sources).
+[30] Kolm, H. L5 News, September 1980. Reported projection: a several-kilometre lunar launcher delivering ~600,000 tonnes/year. 
 
 [31] O'Neill, G. K. "The Colonization of Space" (1974, Physics Today, Princeton). Cited via the same rentry bibliography.
 
